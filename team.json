@@ -1,0 +1,27 @@
+{
+  "team_number": "T0143",
+  "group_lead": {
+    "name": "Yugam Panchal",
+    "enrollment_no": "2501010535",
+    "github": "yugam1222"
+  },
+  "members": [
+    {
+      "name": "Pratyusha Singh",
+      "enrollment_no": "2501010349",
+      "github": "partyyusha"
+    },
+    {
+      "name": "Yatharth Katta",
+      "enrollment_no": "2501010529",
+      "github": "yats0x7"
+    },
+    {
+      "name": "Shubham Sharma",
+      "enrollment_no": "2501010444",
+      "github": "shubhamsharma0707"
+    }
+  ],
+  "postgres_version": "",
+  "laptop_used_for_benchmarks": "MacBook"
+}

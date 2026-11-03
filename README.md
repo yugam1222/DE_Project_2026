@@ -8,16 +8,14 @@
 **Final submission:** 23 November 2026
 
 ## Team details
+Role	Name	Enrollment No.	GitHub
+Group Lead	Yugam Panchal	2501010535	yugam1222
+Member 2	Pratyusha Singh	2501010349	partyyusha
+Member 3	Yatharth Katta	2501010529	yats0x7
+Member 4	Shubham Sharma	2501010444	shubhamsharma0707
 
-| Role | Name | Enrollment No. | GitHub Username |
-|---|---|---|---|
-| Group Lead | | | yugam1222 |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
-
-**Team No.:**  
-**Section:**  
+**Team No.:**  T0143
+**Section:**  D
 **Repository URL:** https://github.com/yugam1222/DE_Project_2026
 
 ---
