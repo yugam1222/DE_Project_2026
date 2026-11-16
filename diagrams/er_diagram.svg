@@ -1,151 +1,151 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="1580" height="2050" viewBox="0 0 1580 2050">
-<ns0:rect width="100%" height="100%" fill="#f8fafc" />
-<ns0:text x="790" y="55" text-anchor="middle" font-size="30" font-weight="bold" fill="#172554">AMAZON ONLINE SHOPPING DATABASE</ns0:text>
-<ns0:text x="790" y="86" text-anchor="middle" font-size="17" fill="#475569">Entity Relationship Diagram | PostgreSQL | Team T0143</ns0:text>
-<ns0:path d="M 260.0 200.0 L 522.5 200.0 L 522.5 260.0 L 785.0 260.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 260.0 200.0 L 785.0 200.0 L 785.0 248.0 L 1310.0 248.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 260.0 L 522.5 260.0 L 522.5 628.0 L 260.0 628.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 260.0 L 785.0 260.0 L 785.0 652.0 L 785.0 652.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 260.0 628.0 L 522.5 628.0 L 522.5 652.0 L 785.0 652.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 1310.0 248.0 L 1310.0 248.0 L 1310.0 712.0 L 1310.0 712.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 260.0 972.0 L 785.0 972.0 L 785.0 712.0 L 1310.0 712.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 652.0 L 785.0 652.0 L 785.0 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 1310.0 712.0 L 1047.5 712.0 L 1047.5 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 1310.0 248.0 L 1047.5 248.0 L 1047.5 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 996.0 L 785.0 996.0 L 785.0 1376.0 L 785.0 1376.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 1310.0 712.0 L 1310.0 712.0 L 1310.0 1032.0 L 1310.0 1032.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 260.0 L 1047.5 260.0 L 1047.5 1032.0 L 1310.0 1032.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 785.0 260.0 L 1047.5 260.0 L 1047.5 1352.0 L 1310.0 1352.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:path d="M 1310.0 712.0 L 1310.0 712.0 L 1310.0 1352.0 L 1310.0 1352.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
-<ns0:rect x="45" y="130" width="430" height="140" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M55 130 H465 Q475 130 475 140 V178 H45 V140 Q45 130 55 130" fill="#1e3a8a" />
-<ns0:text x="260.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CITIES</ns0:text>
-<ns0:text x="62" y="200" font-size="15" fill="#15803d">PK city_id</ns0:text>
-<ns0:text x="62" y="224" font-size="15" fill="#334155">city_name</ns0:text>
-<ns0:text x="62" y="248" font-size="15" fill="#334155">state</ns0:text>
-<ns0:rect x="570" y="130" width="430" height="260" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M580 130 H990 Q1000 130 1000 140 V178 H570 V140 Q570 130 580 130" fill="#1e3a8a" />
-<ns0:text x="785.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CUSTOMERS</ns0:text>
-<ns0:text x="587" y="200" font-size="15" fill="#15803d">PK customer_id</ns0:text>
-<ns0:text x="587" y="224" font-size="15" fill="#1d4ed8">FK city_id</ns0:text>
-<ns0:text x="587" y="248" font-size="15" fill="#334155">full_name</ns0:text>
-<ns0:text x="587" y="272" font-size="15" fill="#334155">email</ns0:text>
-<ns0:text x="587" y="296" font-size="15" fill="#334155">phone</ns0:text>
-<ns0:text x="587" y="320" font-size="15" fill="#334155">signup_date</ns0:text>
-<ns0:text x="587" y="344" font-size="15" fill="#334155">is_prime</ns0:text>
-<ns0:text x="587" y="368" font-size="15" fill="#334155">prime_since</ns0:text>
-<ns0:rect x="1095" y="130" width="430" height="236" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M1105 130 H1515 Q1525 130 1525 140 V178 H1095 V140 Q1095 130 1105 130" fill="#1e3a8a" />
-<ns0:text x="1310.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">SELLERS</ns0:text>
-<ns0:text x="1112" y="200" font-size="15" fill="#15803d">PK seller_id</ns0:text>
-<ns0:text x="1112" y="224" font-size="15" fill="#1d4ed8">FK city_id</ns0:text>
-<ns0:text x="1112" y="248" font-size="15" fill="#334155">business_name</ns0:text>
-<ns0:text x="1112" y="272" font-size="15" fill="#334155">gstin</ns0:text>
-<ns0:text x="1112" y="296" font-size="15" fill="#334155">joined_on</ns0:text>
-<ns0:text x="1112" y="320" font-size="15" fill="#334155">seller_rating</ns0:text>
-<ns0:text x="1112" y="344" font-size="15" fill="#334155">status</ns0:text>
-<ns0:rect x="45" y="510" width="430" height="236" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M55 510 H465 Q475 510 475 520 V558 H45 V520 Q45 510 55 510" fill="#1e3a8a" />
-<ns0:text x="260.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ADDRESSES</ns0:text>
-<ns0:text x="62" y="580" font-size="15" fill="#15803d">PK address_id</ns0:text>
-<ns0:text x="62" y="604" font-size="15" fill="#1d4ed8">FK customer_id</ns0:text>
-<ns0:text x="62" y="628" font-size="15" fill="#1d4ed8">FK city_id</ns0:text>
-<ns0:text x="62" y="652" font-size="15" fill="#334155">label</ns0:text>
-<ns0:text x="62" y="676" font-size="15" fill="#334155">line1</ns0:text>
-<ns0:text x="62" y="700" font-size="15" fill="#334155">pincode</ns0:text>
-<ns0:text x="62" y="724" font-size="15" fill="#334155">is_default</ns0:text>
-<ns0:rect x="570" y="510" width="430" height="284" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M580 510 H990 Q1000 510 1000 520 V558 H570 V520 Q570 510 580 510" fill="#1e3a8a" />
-<ns0:text x="785.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ORDERS</ns0:text>
-<ns0:text x="587" y="580" font-size="15" fill="#15803d">PK order_id</ns0:text>
-<ns0:text x="587" y="604" font-size="15" fill="#1d4ed8">FK customer_id</ns0:text>
-<ns0:text x="587" y="628" font-size="15" fill="#1d4ed8">FK address_id</ns0:text>
-<ns0:text x="587" y="652" font-size="15" fill="#334155">ordered_at</ns0:text>
-<ns0:text x="587" y="676" font-size="15" fill="#334155">payment_method</ns0:text>
-<ns0:text x="587" y="700" font-size="15" fill="#334155">total_amount</ns0:text>
-<ns0:text x="587" y="724" font-size="15" fill="#334155">status</ns0:text>
-<ns0:text x="587" y="748" font-size="15" fill="#334155">shipped_at</ns0:text>
-<ns0:text x="587" y="772" font-size="15" fill="#334155">delivered_at</ns0:text>
-<ns0:rect x="1095" y="510" width="430" height="404" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M1105 510 H1515 Q1525 510 1525 520 V558 H1095 V520 Q1095 510 1105 510" fill="#1e3a8a" />
-<ns0:text x="1310.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">PRODUCTS</ns0:text>
-<ns0:text x="1112" y="580" font-size="15" fill="#15803d">PK product_id</ns0:text>
-<ns0:text x="1112" y="604" font-size="15" fill="#1d4ed8">FK seller_id</ns0:text>
-<ns0:text x="1112" y="628" font-size="15" fill="#1d4ed8">FK category_id</ns0:text>
-<ns0:text x="1112" y="652" font-size="15" fill="#334155">asin</ns0:text>
-<ns0:text x="1112" y="676" font-size="15" fill="#334155">title</ns0:text>
-<ns0:text x="1112" y="700" font-size="15" fill="#334155">brand</ns0:text>
-<ns0:text x="1112" y="724" font-size="15" fill="#334155">mrp</ns0:text>
-<ns0:text x="1112" y="748" font-size="15" fill="#334155">price</ns0:text>
-<ns0:text x="1112" y="772" font-size="15" fill="#334155">stock_qty</ns0:text>
-<ns0:text x="1112" y="796" font-size="15" fill="#334155">is_prime_eligible</ns0:text>
-<ns0:text x="1112" y="820" font-size="15" fill="#334155">avg_rating</ns0:text>
-<ns0:text x="1112" y="844" font-size="15" fill="#334155">review_count</ns0:text>
-<ns0:text x="1112" y="868" font-size="15" fill="#334155">listed_on</ns0:text>
-<ns0:text x="1112" y="892" font-size="15" fill="#334155">status</ns0:text>
-<ns0:rect x="45" y="890" width="430" height="164" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M55 890 H465 Q475 890 475 900 V938 H45 V900 Q45 890 55 890" fill="#1e3a8a" />
-<ns0:text x="260.0" y="921" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CATEGORIES</ns0:text>
-<ns0:text x="62" y="960" font-size="15" fill="#15803d">PK category_id</ns0:text>
-<ns0:text x="62" y="984" font-size="15" fill="#1d4ed8">FK parent_category_id</ns0:text>
-<ns0:text x="62" y="1008" font-size="15" fill="#334155">category_name</ns0:text>
-<ns0:text x="62" y="1032" font-size="15" fill="#334155">is_digital</ns0:text>
-<ns0:rect x="570" y="890" width="430" height="212" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M580 890 H990 Q1000 890 1000 900 V938 H570 V900 Q570 890 580 890" fill="#1e3a8a" />
-<ns0:text x="785.0" y="921" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ORDER_ITEMS</ns0:text>
-<ns0:text x="587" y="960" font-size="15" fill="#15803d">PK, FK order_id</ns0:text>
-<ns0:text x="587" y="984" font-size="15" fill="#15803d">PK line_no</ns0:text>
-<ns0:text x="587" y="1008" font-size="15" fill="#1d4ed8">FK product_id</ns0:text>
-<ns0:text x="587" y="1032" font-size="15" fill="#1d4ed8">FK seller_id</ns0:text>
-<ns0:text x="587" y="1056" font-size="15" fill="#334155">quantity</ns0:text>
-<ns0:text x="587" y="1080" font-size="15" fill="#334155">unit_price</ns0:text>
-<ns0:rect x="1095" y="980" width="430" height="284" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M1105 980 H1515 Q1525 980 1525 900 V938 H1095 V900 Q1095 980 1105 980" fill="#1e3a8a" />
-<ns0:text x="1310" y="1038" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">PRODUCT_REVIEWS</ns0:text>
-<ns0:text x="1112" y="1050" font-size="15" fill="#15803d">PK review_id</ns0:text>
-<ns0:text x="1112" y="1074" font-size="15" fill="#1d4ed8">FK product_id</ns0:text>
-<ns0:text x="1112" y="1098" font-size="15" fill="#1d4ed8">FK customer_id</ns0:text>
-<ns0:text x="1112" y="1122" font-size="15" fill="#334155">rating</ns0:text>
-<ns0:text x="1112" y="1146" font-size="15" fill="#334155">title</ns0:text>
-<ns0:text x="1112" y="1170" font-size="15" fill="#334155">body</ns0:text>
-<ns0:text x="1112" y="1194" font-size="15" fill="#334155">verified_purchase</ns0:text>
-<ns0:text x="1112" y="1218" font-size="15" fill="#334155">helpful_votes</ns0:text>
-<ns0:text x="1112" y="1242" font-size="15" fill="#334155">created_at</ns0:text>
-<ns0:rect x="570" y="1270" width="430" height="212" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M580 1270 H990 Q1000 1270 1000 1280 V1318 H570 V1280 Q570 1270 580 1270" fill="#1e3a8a" />
-<ns0:text x="785.0" y="1301" text-anchor="middle" font-size="19" font-weight="bold" fill="white">RETURNS</ns0:text>
-<ns0:text x="587" y="1340" font-size="15" fill="#15803d">PK return_id</ns0:text>
-<ns0:text x="587" y="1364" font-size="15" fill="#1d4ed8">FK order_id + line_no</ns0:text>
-<ns0:text x="587" y="1388" font-size="15" fill="#334155">reason</ns0:text>
-<ns0:text x="587" y="1412" font-size="15" fill="#334155">requested_at</ns0:text>
-<ns0:text x="587" y="1436" font-size="15" fill="#334155">status</ns0:text>
-<ns0:text x="587" y="1460" font-size="15" fill="#334155">refund_amount</ns0:text>
-<ns0:rect x="1095" y="1270" width="430" height="164" rx="10" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:path d="M1105 1270 H1515 Q1525 1270 1525 1280 V1318 H1095 V1280 Q1095 1270 1105 1270" fill="#1e3a8a" />
-<ns0:text x="1310.0" y="1301" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CART_ITEMS</ns0:text>
-<ns0:text x="1112" y="1340" font-size="15" fill="#15803d">PK, FK customer_id</ns0:text>
-<ns0:text x="1112" y="1364" font-size="15" fill="#15803d">PK, FK product_id</ns0:text>
-<ns0:text x="1112" y="1388" font-size="15" fill="#334155">quantity</ns0:text>
-<ns0:text x="1112" y="1412" font-size="15" fill="#334155">added_at</ns0:text>
-<ns0:rect x="45" y="1660" width="1490" height="320" rx="12" fill="white" stroke="#334155" stroke-width="2" />
-<ns0:text x="790" y="1696" text-anchor="middle" font-size="22" font-weight="bold" fill="#172554">RELATIONSHIP CARDINALITY</ns0:text>
-<ns0:text x="75" y="1736" font-size="15" fill="#334155">Cities  —  Customers  (1 : N)</ns0:text>
-<ns0:text x="75" y="1761" font-size="15" fill="#334155">Cities  —  Sellers  (1 : N)</ns0:text>
-<ns0:text x="75" y="1786" font-size="15" fill="#334155">Cities  —  Addresses  (1 : N)</ns0:text>
-<ns0:text x="75" y="1811" font-size="15" fill="#334155">Categories  —  Categories (parent-child)  (1 : N)</ns0:text>
-<ns0:text x="75" y="1836" font-size="15" fill="#334155">Categories  —  Products  (1 : N)</ns0:text>
-<ns0:text x="75" y="1861" font-size="15" fill="#334155">Sellers  —  Products  (1 : N)</ns0:text>
-<ns0:text x="75" y="1886" font-size="15" fill="#334155">Customers  —  Addresses  (1 : N)</ns0:text>
-<ns0:text x="75" y="1911" font-size="15" fill="#334155">Customers  —  Orders  (1 : N)</ns0:text>
-<ns0:text x="75" y="1936" font-size="15" fill="#334155">Addresses  —  Orders  (1 : N)</ns0:text>
-<ns0:text x="820" y="1736" font-size="15" fill="#334155">Orders  —  Order Items  (1 : N)</ns0:text>
-<ns0:text x="820" y="1761" font-size="15" fill="#334155">Products  —  Order Items  (1 : N)</ns0:text>
-<ns0:text x="820" y="1786" font-size="15" fill="#334155">Sellers  —  Order Items  (1 : N)</ns0:text>
-<ns0:text x="820" y="1811" font-size="15" fill="#334155">Order Items  —  Returns  (1 : N)</ns0:text>
-<ns0:text x="820" y="1836" font-size="15" fill="#334155">Products  —  Product Reviews  (1 : N)</ns0:text>
-<ns0:text x="820" y="1861" font-size="15" fill="#334155">Customers  —  Product Reviews  (1 : N)</ns0:text>
-<ns0:text x="820" y="1886" font-size="15" fill="#334155">Customers  —  Cart Items  (1 : N)</ns0:text>
-<ns0:text x="820" y="1911" font-size="15" fill="#334155">Products  —  Cart Items  (1 : N)</ns0:text>
-<ns0:text x="790" y="2020" text-anchor="middle" font-size="14" fill="#64748b">PK = Primary Key | FK = Foreign Key | 1:N = One-to-Many</ns0:text>
-</ns0:svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="2050" viewBox="0 0 1580 2050">
+<rect width="100%" height="100%" fill="#f8fafc" />
+<text x="790" y="55" text-anchor="middle" font-size="30" font-weight="bold" fill="#172554">AMAZON ONLINE SHOPPING DATABASE</text>
+<text x="790" y="86" text-anchor="middle" font-size="17" fill="#475569">Entity Relationship Diagram | PostgreSQL | Team T0143</text>
+<path d="M 260.0 200.0 L 522.5 200.0 L 522.5 260.0 L 785.0 260.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 260.0 200.0 L 785.0 200.0 L 785.0 248.0 L 1310.0 248.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 260.0 L 522.5 260.0 L 522.5 628.0 L 260.0 628.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 260.0 L 785.0 260.0 L 785.0 652.0 L 785.0 652.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 260.0 628.0 L 522.5 628.0 L 522.5 652.0 L 785.0 652.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 1310.0 248.0 L 1310.0 248.0 L 1310.0 712.0 L 1310.0 712.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 260.0 972.0 L 785.0 972.0 L 785.0 712.0 L 1310.0 712.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 652.0 L 785.0 652.0 L 785.0 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 1310.0 712.0 L 1047.5 712.0 L 1047.5 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 1310.0 248.0 L 1047.5 248.0 L 1047.5 996.0 L 785.0 996.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 996.0 L 785.0 996.0 L 785.0 1376.0 L 785.0 1376.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 1310.0 712.0 L 1310.0 712.0 L 1310.0 1032.0 L 1310.0 1032.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 260.0 L 1047.5 260.0 L 1047.5 1032.0 L 1310.0 1032.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 785.0 260.0 L 1047.5 260.0 L 1047.5 1352.0 L 1310.0 1352.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<path d="M 1310.0 712.0 L 1310.0 712.0 L 1310.0 1352.0 L 1310.0 1352.0" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5" />
+<rect x="45" y="130" width="430" height="140" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M55 130 H465 Q475 130 475 140 V178 H45 V140 Q45 130 55 130" fill="#1e3a8a" />
+<text x="260.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CITIES</text>
+<text x="62" y="200" font-size="15" fill="#15803d">PK city_id</text>
+<text x="62" y="224" font-size="15" fill="#334155">city_name</text>
+<text x="62" y="248" font-size="15" fill="#334155">state</text>
+<rect x="570" y="130" width="430" height="260" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M580 130 H990 Q1000 130 1000 140 V178 H570 V140 Q570 130 580 130" fill="#1e3a8a" />
+<text x="785.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CUSTOMERS</text>
+<text x="587" y="200" font-size="15" fill="#15803d">PK customer_id</text>
+<text x="587" y="224" font-size="15" fill="#1d4ed8">FK city_id</text>
+<text x="587" y="248" font-size="15" fill="#334155">full_name</text>
+<text x="587" y="272" font-size="15" fill="#334155">email</text>
+<text x="587" y="296" font-size="15" fill="#334155">phone</text>
+<text x="587" y="320" font-size="15" fill="#334155">signup_date</text>
+<text x="587" y="344" font-size="15" fill="#334155">is_prime</text>
+<text x="587" y="368" font-size="15" fill="#334155">prime_since</text>
+<rect x="1095" y="130" width="430" height="236" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M1105 130 H1515 Q1525 130 1525 140 V178 H1095 V140 Q1095 130 1105 130" fill="#1e3a8a" />
+<text x="1310.0" y="161" text-anchor="middle" font-size="19" font-weight="bold" fill="white">SELLERS</text>
+<text x="1112" y="200" font-size="15" fill="#15803d">PK seller_id</text>
+<text x="1112" y="224" font-size="15" fill="#1d4ed8">FK city_id</text>
+<text x="1112" y="248" font-size="15" fill="#334155">business_name</text>
+<text x="1112" y="272" font-size="15" fill="#334155">gstin</text>
+<text x="1112" y="296" font-size="15" fill="#334155">joined_on</text>
+<text x="1112" y="320" font-size="15" fill="#334155">seller_rating</text>
+<text x="1112" y="344" font-size="15" fill="#334155">status</text>
+<rect x="45" y="510" width="430" height="236" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M55 510 H465 Q475 510 475 520 V558 H45 V520 Q45 510 55 510" fill="#1e3a8a" />
+<text x="260.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ADDRESSES</text>
+<text x="62" y="580" font-size="15" fill="#15803d">PK address_id</text>
+<text x="62" y="604" font-size="15" fill="#1d4ed8">FK customer_id</text>
+<text x="62" y="628" font-size="15" fill="#1d4ed8">FK city_id</text>
+<text x="62" y="652" font-size="15" fill="#334155">label</text>
+<text x="62" y="676" font-size="15" fill="#334155">line1</text>
+<text x="62" y="700" font-size="15" fill="#334155">pincode</text>
+<text x="62" y="724" font-size="15" fill="#334155">is_default</text>
+<rect x="570" y="510" width="430" height="284" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M580 510 H990 Q1000 510 1000 520 V558 H570 V520 Q570 510 580 510" fill="#1e3a8a" />
+<text x="785.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ORDERS</text>
+<text x="587" y="580" font-size="15" fill="#15803d">PK order_id</text>
+<text x="587" y="604" font-size="15" fill="#1d4ed8">FK customer_id</text>
+<text x="587" y="628" font-size="15" fill="#1d4ed8">FK address_id</text>
+<text x="587" y="652" font-size="15" fill="#334155">ordered_at</text>
+<text x="587" y="676" font-size="15" fill="#334155">payment_method</text>
+<text x="587" y="700" font-size="15" fill="#334155">total_amount</text>
+<text x="587" y="724" font-size="15" fill="#334155">status</text>
+<text x="587" y="748" font-size="15" fill="#334155">shipped_at</text>
+<text x="587" y="772" font-size="15" fill="#334155">delivered_at</text>
+<rect x="1095" y="510" width="430" height="404" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M1105 510 H1515 Q1525 510 1525 520 V558 H1095 V520 Q1095 510 1105 510" fill="#1e3a8a" />
+<text x="1310.0" y="541" text-anchor="middle" font-size="19" font-weight="bold" fill="white">PRODUCTS</text>
+<text x="1112" y="580" font-size="15" fill="#15803d">PK product_id</text>
+<text x="1112" y="604" font-size="15" fill="#1d4ed8">FK seller_id</text>
+<text x="1112" y="628" font-size="15" fill="#1d4ed8">FK category_id</text>
+<text x="1112" y="652" font-size="15" fill="#334155">asin</text>
+<text x="1112" y="676" font-size="15" fill="#334155">title</text>
+<text x="1112" y="700" font-size="15" fill="#334155">brand</text>
+<text x="1112" y="724" font-size="15" fill="#334155">mrp</text>
+<text x="1112" y="748" font-size="15" fill="#334155">price</text>
+<text x="1112" y="772" font-size="15" fill="#334155">stock_qty</text>
+<text x="1112" y="796" font-size="15" fill="#334155">is_prime_eligible</text>
+<text x="1112" y="820" font-size="15" fill="#334155">avg_rating</text>
+<text x="1112" y="844" font-size="15" fill="#334155">review_count</text>
+<text x="1112" y="868" font-size="15" fill="#334155">listed_on</text>
+<text x="1112" y="892" font-size="15" fill="#334155">status</text>
+<rect x="45" y="890" width="430" height="164" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M55 890 H465 Q475 890 475 900 V938 H45 V900 Q45 890 55 890" fill="#1e3a8a" />
+<text x="260.0" y="921" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CATEGORIES</text>
+<text x="62" y="960" font-size="15" fill="#15803d">PK category_id</text>
+<text x="62" y="984" font-size="15" fill="#1d4ed8">FK parent_category_id</text>
+<text x="62" y="1008" font-size="15" fill="#334155">category_name</text>
+<text x="62" y="1032" font-size="15" fill="#334155">is_digital</text>
+<rect x="570" y="890" width="430" height="212" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M580 890 H990 Q1000 890 1000 900 V938 H570 V900 Q570 890 580 890" fill="#1e3a8a" />
+<text x="785.0" y="921" text-anchor="middle" font-size="19" font-weight="bold" fill="white">ORDER_ITEMS</text>
+<text x="587" y="960" font-size="15" fill="#15803d">PK, FK order_id</text>
+<text x="587" y="984" font-size="15" fill="#15803d">PK line_no</text>
+<text x="587" y="1008" font-size="15" fill="#1d4ed8">FK product_id</text>
+<text x="587" y="1032" font-size="15" fill="#1d4ed8">FK seller_id</text>
+<text x="587" y="1056" font-size="15" fill="#334155">quantity</text>
+<text x="587" y="1080" font-size="15" fill="#334155">unit_price</text>
+<rect x="1095" y="980" width="430" height="284" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M1105 980 H1515 Q1525 980 1525 900 V938 H1095 V900 Q1095 980 1105 980" fill="#1e3a8a" />
+<text x="1310" y="1038" text-anchor="middle" font-size="19" font-weight="bold" fill="#ffffff">PRODUCT_REVIEWS</text>
+<text x="1112" y="1050" font-size="15" fill="#15803d">PK review_id</text>
+<text x="1112" y="1074" font-size="15" fill="#1d4ed8">FK product_id</text>
+<text x="1112" y="1098" font-size="15" fill="#1d4ed8">FK customer_id</text>
+<text x="1112" y="1122" font-size="15" fill="#334155">rating</text>
+<text x="1112" y="1146" font-size="15" fill="#334155">title</text>
+<text x="1112" y="1170" font-size="15" fill="#334155">body</text>
+<text x="1112" y="1194" font-size="15" fill="#334155">verified_purchase</text>
+<text x="1112" y="1218" font-size="15" fill="#334155">helpful_votes</text>
+<text x="1112" y="1242" font-size="15" fill="#334155">created_at</text>
+<rect x="570" y="1270" width="430" height="212" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M580 1270 H990 Q1000 1270 1000 1280 V1318 H570 V1280 Q570 1270 580 1270" fill="#1e3a8a" />
+<text x="785.0" y="1301" text-anchor="middle" font-size="19" font-weight="bold" fill="white">RETURNS</text>
+<text x="587" y="1340" font-size="15" fill="#15803d">PK return_id</text>
+<text x="587" y="1364" font-size="15" fill="#1d4ed8">FK order_id + line_no</text>
+<text x="587" y="1388" font-size="15" fill="#334155">reason</text>
+<text x="587" y="1412" font-size="15" fill="#334155">requested_at</text>
+<text x="587" y="1436" font-size="15" fill="#334155">status</text>
+<text x="587" y="1460" font-size="15" fill="#334155">refund_amount</text>
+<rect x="1095" y="1270" width="430" height="164" rx="10" fill="white" stroke="#334155" stroke-width="2" />
+<path d="M1105 1270 H1515 Q1525 1270 1525 1280 V1318 H1095 V1280 Q1095 1270 1105 1270" fill="#1e3a8a" />
+<text x="1310.0" y="1301" text-anchor="middle" font-size="19" font-weight="bold" fill="white">CART_ITEMS</text>
+<text x="1112" y="1340" font-size="15" fill="#15803d">PK, FK customer_id</text>
+<text x="1112" y="1364" font-size="15" fill="#15803d">PK, FK product_id</text>
+<text x="1112" y="1388" font-size="15" fill="#334155">quantity</text>
+<text x="1112" y="1412" font-size="15" fill="#334155">added_at</text>
+<rect x="45" y="1660" width="1490" height="320" rx="12" fill="white" stroke="#334155" stroke-width="2" />
+<text x="790" y="1696" text-anchor="middle" font-size="22" font-weight="bold" fill="#172554">RELATIONSHIP CARDINALITY</text>
+<text x="75" y="1736" font-size="15" fill="#334155">Cities  —  Customers  (1 : N)</text>
+<text x="75" y="1761" font-size="15" fill="#334155">Cities  —  Sellers  (1 : N)</text>
+<text x="75" y="1786" font-size="15" fill="#334155">Cities  —  Addresses  (1 : N)</text>
+<text x="75" y="1811" font-size="15" fill="#334155">Categories  —  Categories (parent-child)  (1 : N)</text>
+<text x="75" y="1836" font-size="15" fill="#334155">Categories  —  Products  (1 : N)</text>
+<text x="75" y="1861" font-size="15" fill="#334155">Sellers  —  Products  (1 : N)</text>
+<text x="75" y="1886" font-size="15" fill="#334155">Customers  —  Addresses  (1 : N)</text>
+<text x="75" y="1911" font-size="15" fill="#334155">Customers  —  Orders  (1 : N)</text>
+<text x="75" y="1936" font-size="15" fill="#334155">Addresses  —  Orders  (1 : N)</text>
+<text x="820" y="1736" font-size="15" fill="#334155">Orders  —  Order Items  (1 : N)</text>
+<text x="820" y="1761" font-size="15" fill="#334155">Products  —  Order Items  (1 : N)</text>
+<text x="820" y="1786" font-size="15" fill="#334155">Sellers  —  Order Items  (1 : N)</text>
+<text x="820" y="1811" font-size="15" fill="#334155">Order Items  —  Returns  (1 : N)</text>
+<text x="820" y="1836" font-size="15" fill="#334155">Products  —  Product Reviews  (1 : N)</text>
+<text x="820" y="1861" font-size="15" fill="#334155">Customers  —  Product Reviews  (1 : N)</text>
+<text x="820" y="1886" font-size="15" fill="#334155">Customers  —  Cart Items  (1 : N)</text>
+<text x="820" y="1911" font-size="15" fill="#334155">Products  —  Cart Items  (1 : N)</text>
+<text x="790" y="2020" text-anchor="middle" font-size="14" fill="#64748b">PK = Primary Key | FK = Foreign Key | 1:N = One-to-Many</text>
+</svg>
