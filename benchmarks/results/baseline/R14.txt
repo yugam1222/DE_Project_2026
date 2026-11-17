@@ -1,0 +1,45 @@
+=== R14 run 1 ===
+Limit  (cost=1412.39..1412.51 rows=50 width=104) (actual time=9.762..9.770 rows=50.00 loops=1)
+  Buffers: shared hit=478
+  ->  Sort  (cost=1412.39..1434.94 rows=9020 width=104) (actual time=9.760..9.764 rows=50.00 loops=1)
+        Sort Key: ((price / mrp))
+        Sort Method: top-N heapsort  Memory: 36kB
+        Buffers: shared hit=478
+        ->  Seq Scan on products  (cost=0.00..1112.75 rows=9020 width=104) (actual time=0.018..9.078 rows=2495.00 loops=1)
+              Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+              Rows Removed by Filter: 27505
+              Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=120
+Planning Time: 0.384 ms
+Execution Time: 9.804 ms
+=== R14 run 2 ===
+Limit  (cost=1412.39..1412.51 rows=50 width=104) (actual time=8.965..8.971 rows=50.00 loops=1)
+  Buffers: shared hit=478
+  ->  Sort  (cost=1412.39..1434.94 rows=9020 width=104) (actual time=8.964..8.966 rows=50.00 loops=1)
+        Sort Key: ((price / mrp))
+        Sort Method: top-N heapsort  Memory: 36kB
+        Buffers: shared hit=478
+        ->  Seq Scan on products  (cost=0.00..1112.75 rows=9020 width=104) (actual time=0.018..8.346 rows=2495.00 loops=1)
+              Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+              Rows Removed by Filter: 27505
+              Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=120
+Planning Time: 0.389 ms
+Execution Time: 8.996 ms
+=== R14 run 3 ===
+Limit  (cost=1412.39..1412.51 rows=50 width=104) (actual time=9.143..9.149 rows=50.00 loops=1)
+  Buffers: shared hit=478
+  ->  Sort  (cost=1412.39..1434.94 rows=9020 width=104) (actual time=9.141..9.144 rows=50.00 loops=1)
+        Sort Key: ((price / mrp))
+        Sort Method: top-N heapsort  Memory: 36kB
+        Buffers: shared hit=478
+        ->  Seq Scan on products  (cost=0.00..1112.75 rows=9020 width=104) (actual time=0.019..8.464 rows=2495.00 loops=1)
+              Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+              Rows Removed by Filter: 27505
+              Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=120
+Planning Time: 0.403 ms
+Execution Time: 9.184 ms

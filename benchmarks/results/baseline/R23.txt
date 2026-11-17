@@ -1,0 +1,90 @@
+=== R23 run 1 ===
+Nested Loop  (cost=1.28..51.75 rows=2 width=82) (actual time=0.062..0.088 rows=3.00 loops=1)
+  Buffers: shared hit=28
+  ->  Nested Loop  (cost=1.00..35.15 rows=2 width=68) (actual time=0.051..0.071 rows=3.00 loops=1)
+        Buffers: shared hit=19
+        ->  Nested Loop  (cost=0.71..18.54 rows=2 width=46) (actual time=0.037..0.040 rows=3.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..10.21 rows=2 width=29) (actual time=0.020..0.020 rows=3.00 loops=1)
+                    Index Cond: (order_id = 100001)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Materialize  (cost=0.29..8.32 rows=1 width=25) (actual time=0.005..0.006 rows=1.00 loops=3)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=3
+                    ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=25) (actual time=0.013..0.014 rows=1.00 loops=1)
+                          Index Cond: (order_id = 100001)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+        ->  Index Scan using products_pkey on products p  (cost=0.29..8.30 rows=1 width=30) (actual time=0.009..0.009 rows=1.00 loops=3)
+              Index Cond: (product_id = oi.product_id)
+              Index Searches: 3
+              Buffers: shared hit=9
+  ->  Index Scan using sellers_pkey on sellers s  (cost=0.28..8.29 rows=1 width=22) (actual time=0.005..0.005 rows=1.00 loops=3)
+        Index Cond: (seller_id = oi.seller_id)
+        Index Searches: 3
+        Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=237
+Planning Time: 1.095 ms
+Execution Time: 0.157 ms
+=== R23 run 2 ===
+Nested Loop  (cost=1.28..51.75 rows=2 width=82) (actual time=0.061..0.086 rows=3.00 loops=1)
+  Buffers: shared hit=28
+  ->  Nested Loop  (cost=1.00..35.15 rows=2 width=68) (actual time=0.052..0.070 rows=3.00 loops=1)
+        Buffers: shared hit=19
+        ->  Nested Loop  (cost=0.71..18.54 rows=2 width=46) (actual time=0.040..0.042 rows=3.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..10.21 rows=2 width=29) (actual time=0.022..0.022 rows=3.00 loops=1)
+                    Index Cond: (order_id = 100001)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Materialize  (cost=0.29..8.32 rows=1 width=25) (actual time=0.005..0.005 rows=1.00 loops=3)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=3
+                    ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=25) (actual time=0.014..0.014 rows=1.00 loops=1)
+                          Index Cond: (order_id = 100001)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+        ->  Index Scan using products_pkey on products p  (cost=0.29..8.30 rows=1 width=30) (actual time=0.008..0.008 rows=1.00 loops=3)
+              Index Cond: (product_id = oi.product_id)
+              Index Searches: 3
+              Buffers: shared hit=9
+  ->  Index Scan using sellers_pkey on sellers s  (cost=0.28..8.29 rows=1 width=22) (actual time=0.005..0.005 rows=1.00 loops=3)
+        Index Cond: (seller_id = oi.seller_id)
+        Index Searches: 3
+        Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=237
+Planning Time: 0.965 ms
+Execution Time: 0.152 ms
+=== R23 run 3 ===
+Nested Loop  (cost=1.28..51.75 rows=2 width=82) (actual time=0.059..0.086 rows=3.00 loops=1)
+  Buffers: shared hit=28
+  ->  Nested Loop  (cost=1.00..35.15 rows=2 width=68) (actual time=0.049..0.069 rows=3.00 loops=1)
+        Buffers: shared hit=19
+        ->  Nested Loop  (cost=0.71..18.54 rows=2 width=46) (actual time=0.036..0.038 rows=3.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using order_items_pkey on order_items oi  (cost=0.42..10.21 rows=2 width=29) (actual time=0.020..0.020 rows=3.00 loops=1)
+                    Index Cond: (order_id = 100001)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Materialize  (cost=0.29..8.32 rows=1 width=25) (actual time=0.005..0.005 rows=1.00 loops=3)
+                    Storage: Memory  Maximum Storage: 17kB
+                    Buffers: shared hit=3
+                    ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=25) (actual time=0.013..0.013 rows=1.00 loops=1)
+                          Index Cond: (order_id = 100001)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+        ->  Index Scan using products_pkey on products p  (cost=0.29..8.30 rows=1 width=30) (actual time=0.009..0.009 rows=1.00 loops=3)
+              Index Cond: (product_id = oi.product_id)
+              Index Searches: 3
+              Buffers: shared hit=9
+  ->  Index Scan using sellers_pkey on sellers s  (cost=0.28..8.29 rows=1 width=22) (actual time=0.005..0.005 rows=1.00 loops=3)
+        Index Cond: (seller_id = oi.seller_id)
+        Index Searches: 3
+        Buffers: shared hit=9
+Planning:
+  Buffers: shared hit=237
+Planning Time: 0.958 ms
+Execution Time: 0.153 ms

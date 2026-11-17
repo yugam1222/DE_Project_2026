@@ -1,0 +1,27 @@
+=== R24 run 1 ===
+Seq Scan on products  (cost=0.00..850.00 rows=1 width=38) (actual time=0.320..2.279 rows=1.00 loops=1)
+  Filter: (asin = 'B0020A200F'::text)
+  Rows Removed by Filter: 29999
+  Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.302 ms
+Execution Time: 2.307 ms
+=== R24 run 2 ===
+Seq Scan on products  (cost=0.00..850.00 rows=1 width=38) (actual time=0.331..2.160 rows=1.00 loops=1)
+  Filter: (asin = 'B0020A200F'::text)
+  Rows Removed by Filter: 29999
+  Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.301 ms
+Execution Time: 2.186 ms
+=== R24 run 3 ===
+Seq Scan on products  (cost=0.00..850.00 rows=1 width=38) (actual time=0.330..2.162 rows=1.00 loops=1)
+  Filter: (asin = 'B0020A200F'::text)
+  Rows Removed by Filter: 29999
+  Buffers: shared hit=475
+Planning:
+  Buffers: shared hit=97
+Planning Time: 0.291 ms
+Execution Time: 2.187 ms
