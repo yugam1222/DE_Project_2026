@@ -30,6 +30,7 @@ ON product_reviews (customer_id, product_id)
 WHERE verified_purchase = TRUE;
 
 -- R04, R09, R10, R18: Customer order lookup
+CREATE INDEX idx_orders_customer_ordered_at
 ON orders (customer_id, ordered_at);
 
 -- R05: Shipped orders
@@ -58,8 +59,8 @@ ON order_items (seller_id, order_id);
 CREATE INDEX idx_returns_order_line
 ON returns (order_id, line_no);
 
--- R22: Newest orders
-ON orders (ordered_at DESC);
+-- R22: Newest orders can scan idx_orders_ordered_at backwards; a second
+-- index with the same leading key would duplicate storage and write overhead.
 
 -- W06: Old cart cleanup
 CREATE INDEX idx_cart_items_added_at
