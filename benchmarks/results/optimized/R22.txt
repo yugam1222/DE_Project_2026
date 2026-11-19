@@ -1,0 +1,50 @@
+=== R22 run 1 ===
+Limit  (cost=2827.29..2828.23 rows=25 width=34) (actual time=15.635..15.639 rows=25.00 loops=1)
+  Buffers: shared hit=972 read=97
+  ->  Index Scan Backward using idx_orders_ordered_at on orders  (cost=0.42..4523.42 rows=120000 width=34) (actual time=0.015..13.176 rows=75025.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=972 read=97
+Planning:
+  Buffers: shared hit=155
+Planning Time: 0.491 ms
+Execution Time: 15.664 ms
+=== R22 run 2 ===
+Limit  (cost=2827.29..2828.23 rows=25 width=34) (actual time=13.688..13.693 rows=25.00 loops=1)
+  Buffers: shared hit=1069
+  ->  Index Scan Backward using idx_orders_ordered_at on orders  (cost=0.42..4523.42 rows=120000 width=34) (actual time=0.015..11.250 rows=75025.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=1069
+Planning:
+  Buffers: shared hit=155
+Planning Time: 0.477 ms
+Execution Time: 13.718 ms
+=== R22 run 3 ===
+Limit  (cost=2827.29..2828.23 rows=25 width=34) (actual time=13.303..13.308 rows=25.00 loops=1)
+  Buffers: shared hit=1069
+  ->  Index Scan Backward using idx_orders_ordered_at on orders  (cost=0.42..4523.42 rows=120000 width=34) (actual time=0.014..10.883 rows=75025.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=1069
+Planning:
+  Buffers: shared hit=155
+Planning Time: 0.451 ms
+Execution Time: 13.332 ms
+=== R22 run 4 ===
+Limit  (cost=2827.29..2828.23 rows=25 width=34) (actual time=13.215..13.220 rows=25.00 loops=1)
+  Buffers: shared hit=1069
+  ->  Index Scan Backward using idx_orders_ordered_at on orders  (cost=0.42..4523.42 rows=120000 width=34) (actual time=0.014..10.768 rows=75025.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=1069
+Planning:
+  Buffers: shared hit=155
+Planning Time: 0.460 ms
+Execution Time: 13.244 ms
+=== R22 run 5 ===
+Limit  (cost=2827.29..2828.23 rows=25 width=34) (actual time=13.384..13.388 rows=25.00 loops=1)
+  Buffers: shared hit=1069
+  ->  Index Scan Backward using idx_orders_ordered_at on orders  (cost=0.42..4523.42 rows=120000 width=34) (actual time=0.019..10.915 rows=75025.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=1069
+Planning:
+  Buffers: shared hit=155
+Planning Time: 0.530 ms
+Execution Time: 13.415 ms

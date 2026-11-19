@@ -1,0 +1,45 @@
+=== R05 run 1 ===
+Index Scan using idx_orders_shipped_at on orders  (cost=0.28..48.01 rows=841 width=20) (actual time=0.020..1.091 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=316
+Planning:
+  Buffers: shared hit=161
+Planning Time: 0.491 ms
+Execution Time: 1.138 ms
+=== R05 run 2 ===
+Index Scan using idx_orders_shipped_at on orders  (cost=0.28..48.01 rows=841 width=20) (actual time=0.015..0.489 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=316
+Planning:
+  Buffers: shared hit=161
+Planning Time: 0.474 ms
+Execution Time: 0.532 ms
+=== R05 run 3 ===
+Index Scan using idx_orders_shipped_at on orders  (cost=0.28..48.01 rows=841 width=20) (actual time=0.015..0.498 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=316
+Planning:
+  Buffers: shared hit=161
+Planning Time: 0.472 ms
+Execution Time: 0.544 ms
+=== R05 run 4 ===
+Index Scan using idx_orders_shipped_at on orders  (cost=0.28..48.01 rows=841 width=20) (actual time=0.015..0.492 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=316
+Planning:
+  Buffers: shared hit=161
+Planning Time: 0.464 ms
+Execution Time: 0.536 ms
+=== R05 run 5 ===
+Index Scan using idx_orders_shipped_at on orders  (cost=0.28..48.01 rows=841 width=20) (actual time=0.015..0.590 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Index Searches: 1
+  Buffers: shared hit=316
+Planning:
+  Buffers: shared hit=161
+Planning Time: 0.517 ms
+Execution Time: 0.634 ms

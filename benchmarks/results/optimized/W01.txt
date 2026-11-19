@@ -1,0 +1,40 @@
+=== W01 run 1 ===
+Insert on orders  (cost=0.00..0.01 rows=0 width=0) (actual time=0.314..0.314 rows=0.00 loops=1)
+  Buffers: shared hit=100 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.002..0.003 rows=1.00 loops=1)
+Planning Time: 0.068 ms
+Trigger for constraint orders_customer_id_fkey: time=0.420 calls=1
+Trigger for constraint orders_address_id_fkey: time=0.187 calls=1
+Execution Time: 0.943 ms
+=== W01 run 2 ===
+Insert on orders  (cost=0.00..0.01 rows=0 width=0) (actual time=0.240..0.241 rows=0.00 loops=1)
+  Buffers: shared hit=101
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.003..0.003 rows=1.00 loops=1)
+Planning Time: 0.070 ms
+Trigger for constraint orders_customer_id_fkey: time=0.380 calls=1
+Trigger for constraint orders_address_id_fkey: time=0.165 calls=1
+Execution Time: 0.806 ms
+=== W01 run 3 ===
+Insert on orders  (cost=0.00..0.01 rows=0 width=0) (actual time=0.238..0.238 rows=0.00 loops=1)
+  Buffers: shared hit=101
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.002..0.002 rows=1.00 loops=1)
+Planning Time: 0.067 ms
+Trigger for constraint orders_customer_id_fkey: time=0.370 calls=1
+Trigger for constraint orders_address_id_fkey: time=0.164 calls=1
+Execution Time: 0.791 ms
+=== W01 run 4 ===
+Insert on orders  (cost=0.00..0.01 rows=0 width=0) (actual time=0.266..0.267 rows=0.00 loops=1)
+  Buffers: shared hit=101
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.002..0.002 rows=1.00 loops=1)
+Planning Time: 0.080 ms
+Trigger for constraint orders_customer_id_fkey: time=0.417 calls=1
+Trigger for constraint orders_address_id_fkey: time=0.176 calls=1
+Execution Time: 0.882 ms
+=== W01 run 5 ===
+Insert on orders  (cost=0.00..0.01 rows=0 width=0) (actual time=0.284..0.284 rows=0.00 loops=1)
+  Buffers: shared hit=101 dirtied=1
+  ->  Result  (cost=0.00..0.01 rows=1 width=120) (actual time=0.002..0.002 rows=1.00 loops=1)
+Planning Time: 0.082 ms
+Trigger for constraint orders_customer_id_fkey: time=0.426 calls=1
+Trigger for constraint orders_address_id_fkey: time=0.176 calls=1
+Execution Time: 0.911 ms

@@ -1,0 +1,65 @@
+=== R03 run 1 ===
+GroupAggregate  (cost=0.29..4.35 rows=2 width=10) (actual time=0.069..0.069 rows=1.00 loops=1)
+  Group Key: rating
+  Buffers: shared hit=3
+  ->  Index Only Scan Backward using idx_reviews_product_rating on product_reviews  (cost=0.29..4.32 rows=2 width=2) (actual time=0.065..0.066 rows=1.00 loops=1)
+        Index Cond: (product_id = 4321)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=158
+Planning Time: 0.744 ms
+Execution Time: 0.114 ms
+=== R03 run 2 ===
+GroupAggregate  (cost=0.29..4.35 rows=2 width=10) (actual time=0.044..0.044 rows=1.00 loops=1)
+  Group Key: rating
+  Buffers: shared hit=3
+  ->  Index Only Scan Backward using idx_reviews_product_rating on product_reviews  (cost=0.29..4.32 rows=2 width=2) (actual time=0.041..0.041 rows=1.00 loops=1)
+        Index Cond: (product_id = 4321)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=158
+Planning Time: 0.447 ms
+Execution Time: 0.083 ms
+=== R03 run 3 ===
+GroupAggregate  (cost=0.29..4.35 rows=2 width=10) (actual time=0.042..0.042 rows=1.00 loops=1)
+  Group Key: rating
+  Buffers: shared hit=3
+  ->  Index Only Scan Backward using idx_reviews_product_rating on product_reviews  (cost=0.29..4.32 rows=2 width=2) (actual time=0.039..0.039 rows=1.00 loops=1)
+        Index Cond: (product_id = 4321)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=158
+Planning Time: 0.471 ms
+Execution Time: 0.082 ms
+=== R03 run 4 ===
+GroupAggregate  (cost=0.29..4.35 rows=2 width=10) (actual time=0.044..0.044 rows=1.00 loops=1)
+  Group Key: rating
+  Buffers: shared hit=3
+  ->  Index Only Scan Backward using idx_reviews_product_rating on product_reviews  (cost=0.29..4.32 rows=2 width=2) (actual time=0.040..0.041 rows=1.00 loops=1)
+        Index Cond: (product_id = 4321)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=158
+Planning Time: 0.455 ms
+Execution Time: 0.085 ms
+=== R03 run 5 ===
+GroupAggregate  (cost=0.29..4.35 rows=2 width=10) (actual time=0.045..0.045 rows=1.00 loops=1)
+  Group Key: rating
+  Buffers: shared hit=3
+  ->  Index Only Scan Backward using idx_reviews_product_rating on product_reviews  (cost=0.29..4.32 rows=2 width=2) (actual time=0.041..0.041 rows=1.00 loops=1)
+        Index Cond: (product_id = 4321)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=158
+Planning Time: 0.442 ms
+Execution Time: 0.087 ms

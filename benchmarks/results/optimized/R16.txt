@@ -1,0 +1,155 @@
+=== R16 run 1 ===
+Limit  (cost=944.25..944.30 rows=21 width=55) (actual time=13.150..13.157 rows=50.00 loops=1)
+  Buffers: shared hit=13129
+  ->  Sort  (cost=944.25..944.30 rows=21 width=55) (actual time=13.149..13.153 rows=50.00 loops=1)
+        Sort Key: r.created_at DESC
+        Sort Method: top-N heapsort  Memory: 33kB
+        Buffers: shared hit=13129
+        ->  Nested Loop  (cost=25.11..943.79 rows=21 width=55) (actual time=0.079..13.046 rows=584.00 loops=1)
+              Buffers: shared hit=13126
+              ->  Hash Join  (cost=24.82..879.85 rows=153 width=4) (actual time=0.024..4.136 rows=3750.00 loops=1)
+                    Hash Cond: (p.category_id = c.category_id)
+                    Buffers: shared hit=477
+                    ->  Seq Scan on products p  (cost=0.00..776.00 rows=30000 width=8) (actual time=0.005..1.717 rows=30000.00 loops=1)
+                          Buffers: shared hit=476
+                    ->  Hash  (cost=24.75..24.75 rows=6 width=4) (actual time=0.012..0.012 rows=4.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on categories c  (cost=0.00..24.75 rows=6 width=4) (actual time=0.004..0.006 rows=4.00 loops=1)
+                                Filter: (parent_category_id = 1)
+                                Rows Removed by Filter: 36
+                                Buffers: shared hit=1
+              ->  Index Scan using idx_reviews_product_rating on product_reviews r  (cost=0.29..0.41 rows=1 width=55) (actual time=0.002..0.002 rows=0.16 loops=3750)
+                    Index Cond: (product_id = p.product_id)
+                    Filter: (body ~~* '%battery%'::text)
+                    Rows Removed by Filter: 1
+                    Index Searches: 3750
+                    Buffers: shared hit=12649
+Planning:
+  Buffers: shared hit=431
+Planning Time: 1.979 ms
+Execution Time: 13.210 ms
+=== R16 run 2 ===
+Limit  (cost=944.25..944.30 rows=21 width=55) (actual time=12.678..12.684 rows=50.00 loops=1)
+  Buffers: shared hit=13129
+  ->  Sort  (cost=944.25..944.30 rows=21 width=55) (actual time=12.676..12.679 rows=50.00 loops=1)
+        Sort Key: r.created_at DESC
+        Sort Method: top-N heapsort  Memory: 33kB
+        Buffers: shared hit=13129
+        ->  Nested Loop  (cost=25.11..943.79 rows=21 width=55) (actual time=0.072..12.566 rows=584.00 loops=1)
+              Buffers: shared hit=13126
+              ->  Hash Join  (cost=24.82..879.85 rows=153 width=4) (actual time=0.032..4.153 rows=3750.00 loops=1)
+                    Hash Cond: (p.category_id = c.category_id)
+                    Buffers: shared hit=477
+                    ->  Seq Scan on products p  (cost=0.00..776.00 rows=30000 width=8) (actual time=0.006..1.694 rows=30000.00 loops=1)
+                          Buffers: shared hit=476
+                    ->  Hash  (cost=24.75..24.75 rows=6 width=4) (actual time=0.016..0.016 rows=4.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on categories c  (cost=0.00..24.75 rows=6 width=4) (actual time=0.006..0.008 rows=4.00 loops=1)
+                                Filter: (parent_category_id = 1)
+                                Rows Removed by Filter: 36
+                                Buffers: shared hit=1
+              ->  Index Scan using idx_reviews_product_rating on product_reviews r  (cost=0.29..0.41 rows=1 width=55) (actual time=0.002..0.002 rows=0.16 loops=3750)
+                    Index Cond: (product_id = p.product_id)
+                    Filter: (body ~~* '%battery%'::text)
+                    Rows Removed by Filter: 1
+                    Index Searches: 3750
+                    Buffers: shared hit=12649
+Planning:
+  Buffers: shared hit=431
+Planning Time: 2.089 ms
+Execution Time: 12.771 ms
+=== R16 run 3 ===
+Limit  (cost=944.25..944.30 rows=21 width=55) (actual time=13.201..13.208 rows=50.00 loops=1)
+  Buffers: shared hit=13129
+  ->  Sort  (cost=944.25..944.30 rows=21 width=55) (actual time=13.200..13.203 rows=50.00 loops=1)
+        Sort Key: r.created_at DESC
+        Sort Method: top-N heapsort  Memory: 33kB
+        Buffers: shared hit=13129
+        ->  Nested Loop  (cost=25.11..943.79 rows=21 width=55) (actual time=0.069..13.091 rows=584.00 loops=1)
+              Buffers: shared hit=13126
+              ->  Hash Join  (cost=24.82..879.85 rows=153 width=4) (actual time=0.030..4.280 rows=3750.00 loops=1)
+                    Hash Cond: (p.category_id = c.category_id)
+                    Buffers: shared hit=477
+                    ->  Seq Scan on products p  (cost=0.00..776.00 rows=30000 width=8) (actual time=0.005..1.762 rows=30000.00 loops=1)
+                          Buffers: shared hit=476
+                    ->  Hash  (cost=24.75..24.75 rows=6 width=4) (actual time=0.016..0.016 rows=4.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on categories c  (cost=0.00..24.75 rows=6 width=4) (actual time=0.007..0.009 rows=4.00 loops=1)
+                                Filter: (parent_category_id = 1)
+                                Rows Removed by Filter: 36
+                                Buffers: shared hit=1
+              ->  Index Scan using idx_reviews_product_rating on product_reviews r  (cost=0.29..0.41 rows=1 width=55) (actual time=0.002..0.002 rows=0.16 loops=3750)
+                    Index Cond: (product_id = p.product_id)
+                    Filter: (body ~~* '%battery%'::text)
+                    Rows Removed by Filter: 1
+                    Index Searches: 3750
+                    Buffers: shared hit=12649
+Planning:
+  Buffers: shared hit=431
+Planning Time: 2.309 ms
+Execution Time: 13.266 ms
+=== R16 run 4 ===
+Limit  (cost=944.25..944.30 rows=21 width=55) (actual time=13.061..13.068 rows=50.00 loops=1)
+  Buffers: shared hit=13129
+  ->  Sort  (cost=944.25..944.30 rows=21 width=55) (actual time=13.060..13.063 rows=50.00 loops=1)
+        Sort Key: r.created_at DESC
+        Sort Method: top-N heapsort  Memory: 33kB
+        Buffers: shared hit=13129
+        ->  Nested Loop  (cost=25.11..943.79 rows=21 width=55) (actual time=0.058..12.953 rows=584.00 loops=1)
+              Buffers: shared hit=13126
+              ->  Hash Join  (cost=24.82..879.85 rows=153 width=4) (actual time=0.024..4.317 rows=3750.00 loops=1)
+                    Hash Cond: (p.category_id = c.category_id)
+                    Buffers: shared hit=477
+                    ->  Seq Scan on products p  (cost=0.00..776.00 rows=30000 width=8) (actual time=0.004..1.782 rows=30000.00 loops=1)
+                          Buffers: shared hit=476
+                    ->  Hash  (cost=24.75..24.75 rows=6 width=4) (actual time=0.012..0.012 rows=4.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on categories c  (cost=0.00..24.75 rows=6 width=4) (actual time=0.005..0.006 rows=4.00 loops=1)
+                                Filter: (parent_category_id = 1)
+                                Rows Removed by Filter: 36
+                                Buffers: shared hit=1
+              ->  Index Scan using idx_reviews_product_rating on product_reviews r  (cost=0.29..0.41 rows=1 width=55) (actual time=0.002..0.002 rows=0.16 loops=3750)
+                    Index Cond: (product_id = p.product_id)
+                    Filter: (body ~~* '%battery%'::text)
+                    Rows Removed by Filter: 1
+                    Index Searches: 3750
+                    Buffers: shared hit=12649
+Planning:
+  Buffers: shared hit=431
+Planning Time: 1.958 ms
+Execution Time: 13.127 ms
+=== R16 run 5 ===
+Limit  (cost=944.25..944.30 rows=21 width=55) (actual time=13.690..13.697 rows=50.00 loops=1)
+  Buffers: shared hit=13129
+  ->  Sort  (cost=944.25..944.30 rows=21 width=55) (actual time=13.688..13.692 rows=50.00 loops=1)
+        Sort Key: r.created_at DESC
+        Sort Method: top-N heapsort  Memory: 33kB
+        Buffers: shared hit=13129
+        ->  Nested Loop  (cost=25.11..943.79 rows=21 width=55) (actual time=0.073..13.577 rows=584.00 loops=1)
+              Buffers: shared hit=13126
+              ->  Hash Join  (cost=24.82..879.85 rows=153 width=4) (actual time=0.029..4.507 rows=3750.00 loops=1)
+                    Hash Cond: (p.category_id = c.category_id)
+                    Buffers: shared hit=477
+                    ->  Seq Scan on products p  (cost=0.00..776.00 rows=30000 width=8) (actual time=0.005..1.880 rows=30000.00 loops=1)
+                          Buffers: shared hit=476
+                    ->  Hash  (cost=24.75..24.75 rows=6 width=4) (actual time=0.015..0.015 rows=4.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=1
+                          ->  Seq Scan on categories c  (cost=0.00..24.75 rows=6 width=4) (actual time=0.006..0.008 rows=4.00 loops=1)
+                                Filter: (parent_category_id = 1)
+                                Rows Removed by Filter: 36
+                                Buffers: shared hit=1
+              ->  Index Scan using idx_reviews_product_rating on product_reviews r  (cost=0.29..0.41 rows=1 width=55) (actual time=0.002..0.002 rows=0.16 loops=3750)
+                    Index Cond: (product_id = p.product_id)
+                    Filter: (body ~~* '%battery%'::text)
+                    Rows Removed by Filter: 1
+                    Index Searches: 3750
+                    Buffers: shared hit=12649
+Planning:
+  Buffers: shared hit=431
+Planning Time: 2.501 ms
+Execution Time: 13.761 ms

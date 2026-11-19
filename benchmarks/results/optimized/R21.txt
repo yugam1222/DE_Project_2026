@@ -1,0 +1,75 @@
+=== R21 run 1 ===
+Sort  (cost=444.88..450.55 rows=2270 width=44) (actual time=1.781..1.829 rows=1327.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 131kB
+  Buffers: shared hit=103
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..318.34 rows=2270 width=44) (actual time=0.022..1.529 rows=1327.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 5266
+        Index Searches: 1
+        Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=172
+Planning Time: 0.465 ms
+Execution Time: 1.929 ms
+=== R21 run 2 ===
+Sort  (cost=444.88..450.55 rows=2270 width=44) (actual time=1.909..1.957 rows=1327.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 131kB
+  Buffers: shared hit=103
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..318.34 rows=2270 width=44) (actual time=0.022..1.678 rows=1327.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 5266
+        Index Searches: 1
+        Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=172
+Planning Time: 0.504 ms
+Execution Time: 2.059 ms
+=== R21 run 3 ===
+Sort  (cost=444.88..450.55 rows=2270 width=44) (actual time=1.841..1.889 rows=1327.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 131kB
+  Buffers: shared hit=103
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..318.34 rows=2270 width=44) (actual time=0.022..1.602 rows=1327.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 5266
+        Index Searches: 1
+        Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=172
+Planning Time: 0.479 ms
+Execution Time: 1.990 ms
+=== R21 run 4 ===
+Sort  (cost=444.88..450.55 rows=2270 width=44) (actual time=1.797..1.844 rows=1327.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 131kB
+  Buffers: shared hit=103
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..318.34 rows=2270 width=44) (actual time=0.020..1.561 rows=1327.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 5266
+        Index Searches: 1
+        Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=172
+Planning Time: 0.457 ms
+Execution Time: 1.939 ms
+=== R21 run 5 ===
+Sort  (cost=444.88..450.55 rows=2270 width=44) (actual time=1.887..1.935 rows=1327.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 131kB
+  Buffers: shared hit=103
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..318.34 rows=2270 width=44) (actual time=0.020..1.632 rows=1327.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 5266
+        Index Searches: 1
+        Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=172
+Planning Time: 0.474 ms
+Execution Time: 2.034 ms

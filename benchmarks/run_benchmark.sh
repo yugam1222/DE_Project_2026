@@ -25,7 +25,15 @@ echo "query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes" > "$SUMMARY"
 # Split the workload file on "-- @ID" markers into one temp file per query
 TMP="$(mktemp -d)"
 awk -v dir="$TMP" '
-  /^-- @/ { id = ""; if ($2 ~ /^@[RW][0-9]+$/) { id = substr($2, 2); file = dir "/" id ".sql"; printf "" > file }; next }
+  /^-- @/ {
+    id = ""
+    if ($2 ~ /^@[RW][0-9]+$/) {
+      id = substr($2, 2)
+      file = dir "/" id ".sql"
+      printf "" > file
+    }
+    next
+  }
   id != "" && !/^--/ { print >> file }
 ' "$WORKLOAD"
 

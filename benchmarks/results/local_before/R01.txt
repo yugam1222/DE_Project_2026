@@ -1,0 +1,45 @@
+=== R01 run 1 ===
+Limit  (cost=1000.39..1000.45 rows=24 width=44) (actual time=27.682..27.685 rows=24.00 loops=1)
+  Buffers: shared hit=482
+  ->  Sort  (cost=1000.39..1006.96 rows=2630 width=44) (actual time=27.680..27.682 rows=24.00 loops=1)
+        Sort Key: avg_rating DESC NULLS LAST, review_count DESC
+        Sort Method: top-N heapsort  Memory: 28kB
+        Buffers: shared hit=482
+        ->  Seq Scan on products  (cost=0.00..926.94 rows=2630 width=44) (actual time=0.015..27.050 rows=2727.00 loops=1)
+              Filter: ((title ~~* '%wireless%'::text) AND (status = 'ACTIVE'::text))
+              Rows Removed by Filter: 27273
+              Buffers: shared hit=476
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.666 ms
+Execution Time: 27.712 ms
+=== R01 run 2 ===
+Limit  (cost=1000.39..1000.45 rows=24 width=44) (actual time=25.008..25.011 rows=24.00 loops=1)
+  Buffers: shared hit=482
+  ->  Sort  (cost=1000.39..1006.96 rows=2630 width=44) (actual time=25.007..25.008 rows=24.00 loops=1)
+        Sort Key: avg_rating DESC NULLS LAST, review_count DESC
+        Sort Method: top-N heapsort  Memory: 28kB
+        Buffers: shared hit=482
+        ->  Seq Scan on products  (cost=0.00..926.94 rows=2630 width=44) (actual time=0.012..24.425 rows=2727.00 loops=1)
+              Filter: ((title ~~* '%wireless%'::text) AND (status = 'ACTIVE'::text))
+              Rows Removed by Filter: 27273
+              Buffers: shared hit=476
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.510 ms
+Execution Time: 25.029 ms
+=== R01 run 3 ===
+Limit  (cost=1000.39..1000.45 rows=24 width=44) (actual time=25.065..25.067 rows=24.00 loops=1)
+  Buffers: shared hit=482
+  ->  Sort  (cost=1000.39..1006.96 rows=2630 width=44) (actual time=25.064..25.065 rows=24.00 loops=1)
+        Sort Key: avg_rating DESC NULLS LAST, review_count DESC
+        Sort Method: top-N heapsort  Memory: 28kB
+        Buffers: shared hit=482
+        ->  Seq Scan on products  (cost=0.00..926.94 rows=2630 width=44) (actual time=0.010..24.501 rows=2727.00 loops=1)
+              Filter: ((title ~~* '%wireless%'::text) AND (status = 'ACTIVE'::text))
+              Rows Removed by Filter: 27273
+              Buffers: shared hit=476
+Planning:
+  Buffers: shared hit=124
+Planning Time: 0.521 ms
+Execution Time: 25.085 ms
