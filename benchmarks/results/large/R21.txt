@@ -1,0 +1,45 @@
+=== R21 run 1 ===
+Sort  (cost=9020.06..9125.31 rows=42100 width=44) (actual time=18.013..18.499 rows=26621.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 2432kB
+  Buffers: shared hit=1881
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5786.45 rows=42100 width=44) (actual time=0.019..15.821 rows=26621.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 105247
+        Index Searches: 1
+        Buffers: shared hit=1876
+Planning:
+  Buffers: shared hit=210 dirtied=2
+Planning Time: 0.409 ms
+Execution Time: 19.137 ms
+=== R21 run 2 ===
+Sort  (cost=9020.06..9125.31 rows=42100 width=44) (actual time=18.099..18.583 rows=26621.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 2432kB
+  Buffers: shared hit=1881
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5786.45 rows=42100 width=44) (actual time=0.017..15.913 rows=26621.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 105247
+        Index Searches: 1
+        Buffers: shared hit=1876
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.328 ms
+Execution Time: 19.209 ms
+=== R21 run 3 ===
+Sort  (cost=9020.06..9125.31 rows=42100 width=44) (actual time=18.363..18.844 rows=26621.00 loops=1)
+  Sort Key: ((delivered_at - ordered_at)) DESC
+  Sort Method: quicksort  Memory: 2432kB
+  Buffers: shared hit=1881
+  ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5786.45 rows=42100 width=44) (actual time=0.018..16.075 rows=26621.00 loops=1)
+        Index Cond: (ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: (delivered_at > (ordered_at + '5 days'::interval))
+        Rows Removed by Filter: 105247
+        Index Searches: 1
+        Buffers: shared hit=1876
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.335 ms
+Execution Time: 19.487 ms

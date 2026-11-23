@@ -1,0 +1,45 @@
+=== R13 run 1 ===
+Hash Right Anti Join  (cost=1476.50..5135.84 rows=19101 width=13) (actual time=14.208..14.968 rows=15679.00 loops=1)
+  Hash Cond: (o.address_id = a.address_id)
+  Buffers: shared hit=1376 read=464
+  ->  Seq Scan on orders o  (cost=0.00..2576.00 rows=120000 width=4) (actual time=0.006..3.163 rows=120000.00 loops=1)
+        Buffers: shared hit=1376
+  ->  Hash  (cost=914.00..914.00 rows=45000 width=13) (actual time=5.176..5.176 rows=45000.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 2490kB
+        Buffers: shared read=464
+        ->  Seq Scan on addresses a  (cost=0.00..914.00 rows=45000 width=13) (actual time=0.179..2.816 rows=45000.00 loops=1)
+              Buffers: shared read=464
+Planning:
+  Buffers: shared hit=301 read=6
+Planning Time: 1.407 ms
+Execution Time: 15.292 ms
+=== R13 run 2 ===
+Hash Right Anti Join  (cost=1476.50..5135.84 rows=19101 width=13) (actual time=12.773..13.554 rows=15679.00 loops=1)
+  Hash Cond: (o.address_id = a.address_id)
+  Buffers: shared hit=1840
+  ->  Seq Scan on orders o  (cost=0.00..2576.00 rows=120000 width=4) (actual time=0.003..3.176 rows=120000.00 loops=1)
+        Buffers: shared hit=1376
+  ->  Hash  (cost=914.00..914.00 rows=45000 width=13) (actual time=3.797..3.797 rows=45000.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 2490kB
+        Buffers: shared hit=464
+        ->  Seq Scan on addresses a  (cost=0.00..914.00 rows=45000 width=13) (actual time=0.003..1.700 rows=45000.00 loops=1)
+              Buffers: shared hit=464
+Planning:
+  Buffers: shared hit=305
+Planning Time: 0.500 ms
+Execution Time: 13.897 ms
+=== R13 run 3 ===
+Hash Right Anti Join  (cost=1476.50..5135.84 rows=19101 width=13) (actual time=13.286..14.133 rows=15679.00 loops=1)
+  Hash Cond: (o.address_id = a.address_id)
+  Buffers: shared hit=1840
+  ->  Seq Scan on orders o  (cost=0.00..2576.00 rows=120000 width=4) (actual time=0.004..3.161 rows=120000.00 loops=1)
+        Buffers: shared hit=1376
+  ->  Hash  (cost=914.00..914.00 rows=45000 width=13) (actual time=3.809..3.810 rows=45000.00 loops=1)
+        Buckets: 65536  Batches: 1  Memory Usage: 2490kB
+        Buffers: shared hit=464
+        ->  Seq Scan on addresses a  (cost=0.00..914.00 rows=45000 width=13) (actual time=0.003..1.679 rows=45000.00 loops=1)
+              Buffers: shared hit=464
+Planning:
+  Buffers: shared hit=305
+Planning Time: 0.438 ms
+Execution Time: 14.450 ms

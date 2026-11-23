@@ -1,0 +1,30 @@
+=== R05 run 1 ===
+Index Only Scan using idx_orders_shipped_covering on orders  (cost=0.28..40.98 rows=726 width=20) (actual time=0.244..0.259 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=1 read=3
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.344 ms
+Execution Time: 0.276 ms
+=== R05 run 2 ===
+Index Only Scan using idx_orders_shipped_covering on orders  (cost=0.28..40.98 rows=726 width=20) (actual time=0.030..0.044 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.353 ms
+Execution Time: 0.061 ms
+=== R05 run 3 ===
+Index Only Scan using idx_orders_shipped_covering on orders  (cost=0.28..40.98 rows=726 width=20) (actual time=0.032..0.046 rows=356.00 loops=1)
+  Index Cond: (shipped_at < '2026-06-20 00:00:00+05:30'::timestamp with time zone)
+  Heap Fetches: 0
+  Index Searches: 1
+  Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=199
+Planning Time: 0.376 ms
+Execution Time: 0.063 ms

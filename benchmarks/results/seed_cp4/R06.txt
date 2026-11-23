@@ -1,0 +1,81 @@
+=== R06 run 1 ===
+Sort  (cost=802.84..802.86 rows=9 width=29) (actual time=6.167..6.168 rows=1.00 loops=1)
+  Sort Key: o.ordered_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=83 read=161
+  ->  Hash Join  (cost=485.21..802.70 rows=9 width=29) (actual time=5.510..6.159 rows=1.00 loops=1)
+        Hash Cond: (o.order_id = oi.order_id)
+        Buffers: shared hit=80 read=161
+        ->  Index Scan using idx_orders_ordered_at on orders o  (cost=0.42..285.14 rows=6536 width=16) (actual time=0.034..0.730 rows=6593.00 loops=1)
+              Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=80 read=18
+        ->  Hash  (cost=482.81..482.81 rows=158 width=21) (actual time=5.256..5.256 rows=142.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared read=143
+              ->  Bitmap Heap Scan on order_items oi  (cost=5.64..482.81 rows=158 width=21) (actual time=0.494..5.233 rows=142.00 loops=1)
+                    Recheck Cond: (seller_id = 217)
+                    Heap Blocks: exact=139
+                    Buffers: shared read=143
+                    ->  Bitmap Index Scan on idx_order_items_seller_order  (cost=0.00..5.60 rows=158 width=0) (actual time=0.316..0.316 rows=142.00 loops=1)
+                          Index Cond: (seller_id = 217)
+                          Index Searches: 1
+                          Buffers: shared read=4
+Planning:
+  Buffers: shared hit=368 read=3
+Planning Time: 1.071 ms
+Execution Time: 6.200 ms
+=== R06 run 2 ===
+Sort  (cost=802.84..802.86 rows=9 width=29) (actual time=0.665..0.666 rows=1.00 loops=1)
+  Sort Key: o.ordered_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=244
+  ->  Hash Join  (cost=485.21..802.70 rows=9 width=29) (actual time=0.229..0.658 rows=1.00 loops=1)
+        Hash Cond: (o.order_id = oi.order_id)
+        Buffers: shared hit=241
+        ->  Index Scan using idx_orders_ordered_at on orders o  (cost=0.42..285.14 rows=6536 width=16) (actual time=0.005..0.344 rows=6593.00 loops=1)
+              Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=98
+        ->  Hash  (cost=482.81..482.81 rows=158 width=21) (actual time=0.143..0.144 rows=142.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared hit=143
+              ->  Bitmap Heap Scan on order_items oi  (cost=5.64..482.81 rows=158 width=21) (actual time=0.020..0.132 rows=142.00 loops=1)
+                    Recheck Cond: (seller_id = 217)
+                    Heap Blocks: exact=139
+                    Buffers: shared hit=143
+                    ->  Bitmap Index Scan on idx_order_items_seller_order  (cost=0.00..5.60 rows=158 width=0) (actual time=0.010..0.010 rows=142.00 loops=1)
+                          Index Cond: (seller_id = 217)
+                          Index Searches: 1
+                          Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=371
+Planning Time: 0.573 ms
+Execution Time: 0.691 ms
+=== R06 run 3 ===
+Sort  (cost=802.84..802.86 rows=9 width=29) (actual time=0.608..0.609 rows=1.00 loops=1)
+  Sort Key: o.ordered_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=244
+  ->  Hash Join  (cost=485.21..802.70 rows=9 width=29) (actual time=0.215..0.601 rows=1.00 loops=1)
+        Hash Cond: (o.order_id = oi.order_id)
+        Buffers: shared hit=241
+        ->  Index Scan using idx_orders_ordered_at on orders o  (cost=0.42..285.14 rows=6536 width=16) (actual time=0.004..0.314 rows=6593.00 loops=1)
+              Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=98
+        ->  Hash  (cost=482.81..482.81 rows=158 width=21) (actual time=0.132..0.132 rows=142.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 16kB
+              Buffers: shared hit=143
+              ->  Bitmap Heap Scan on order_items oi  (cost=5.64..482.81 rows=158 width=21) (actual time=0.019..0.119 rows=142.00 loops=1)
+                    Recheck Cond: (seller_id = 217)
+                    Heap Blocks: exact=139
+                    Buffers: shared hit=143
+                    ->  Bitmap Index Scan on idx_order_items_seller_order  (cost=0.00..5.60 rows=158 width=0) (actual time=0.009..0.009 rows=142.00 loops=1)
+                          Index Cond: (seller_id = 217)
+                          Index Searches: 1
+                          Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=371
+Planning Time: 0.527 ms
+Execution Time: 0.632 ms

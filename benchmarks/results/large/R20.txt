@@ -1,0 +1,66 @@
+=== R20 run 1 ===
+WindowAgg  (cost=17922.85..22343.84 rows=117894 width=68) (actual time=22.973..31.582 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1513 read=366, temp read=299 written=300
+  ->  GroupAggregate  (cost=17922.82..20575.43 rows=117894 width=36) (actual time=22.656..31.563 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1513 read=366, temp read=299 written=300
+        ->  Sort  (cost=17922.82..18217.55 rows=117894 width=9) (actual time=22.338..25.992 rows=124474.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: external merge  Disk: 2392kB
+              Buffers: shared hit=1513 read=366, temp read=299 written=300
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5975.94 rows=117894 width=9) (actual time=0.112..15.707 rows=124474.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 7394
+                    Index Searches: 1
+                    Buffers: shared hit=1510 read=366
+Planning:
+  Buffers: shared hit=253 read=10
+Planning Time: 0.976 ms
+Execution Time: 32.119 ms
+=== R20 run 2 ===
+WindowAgg  (cost=17922.85..22343.84 rows=117894 width=68) (actual time=22.554..31.478 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1879, temp read=299 written=300
+  ->  GroupAggregate  (cost=17922.82..20575.43 rows=117894 width=36) (actual time=22.227..31.460 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1879, temp read=299 written=300
+        ->  Sort  (cost=17922.82..18217.55 rows=117894 width=9) (actual time=21.878..25.561 rows=124474.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: external merge  Disk: 2392kB
+              Buffers: shared hit=1879, temp read=299 written=300
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5975.94 rows=117894 width=9) (actual time=0.013..15.369 rows=124474.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 7394
+                    Index Searches: 1
+                    Buffers: shared hit=1876
+Planning:
+  Buffers: shared hit=263
+Planning Time: 0.431 ms
+Execution Time: 32.007 ms
+=== R20 run 3 ===
+WindowAgg  (cost=17922.85..22343.84 rows=117894 width=68) (actual time=22.728..31.615 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1879, temp read=299 written=300
+  ->  GroupAggregate  (cost=17922.82..20575.43 rows=117894 width=36) (actual time=22.384..31.593 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1879, temp read=299 written=300
+        ->  Sort  (cost=17922.82..18217.55 rows=117894 width=9) (actual time=22.047..25.735 rows=124474.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: external merge  Disk: 2392kB
+              Buffers: shared hit=1879, temp read=299 written=300
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.43..5975.94 rows=117894 width=9) (actual time=0.015..15.278 rows=124474.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 7394
+                    Index Searches: 1
+                    Buffers: shared hit=1876
+Planning:
+  Buffers: shared hit=263
+Planning Time: 0.446 ms
+Execution Time: 32.186 ms

@@ -1,80 +1,65 @@
--- CP4: migrate the largest fact table to eight hash partitions.
--- Run once after loading/scaling the dataset and before the large benchmark.
--- This is a one-time migration; run it in a maintenance window because it
--- copies order_items and briefly requires space for both table copies.
+-- CP4: order partitioning design demonstration for the 100x architecture.
+-- Run after loading amazon.orders. This creates a separate demo table, so the
+-- measured large-data workload remains on the original schema.
+-- The monthly query below demonstrates pruning across yearly RANGE partitions.
 
-BEGIN;
 SET search_path TO amazon;
 
--- Keep order_id in the primary key so existing order_id/line_no references
--- remain valid on the partitioned table.
-CREATE TABLE amazon.order_items_partitioned (
-    order_id BIGINT NOT NULL REFERENCES amazon.orders(order_id),
-    line_no INTEGER NOT NULL,
-    product_id INTEGER NOT NULL REFERENCES amazon.products(product_id),
-    seller_id INTEGER NOT NULL REFERENCES amazon.sellers(seller_id),
-    quantity INTEGER NOT NULL,
-    unit_price NUMERIC(12,2) NOT NULL,
-    CONSTRAINT order_items_partitioned_pkey PRIMARY KEY (order_id, line_no)
-) PARTITION BY HASH (order_id);
+-- CP4 scale-only fixes based on the large-data plans:
+-- R05 needs the projected columns in the partial index for index-only scans.
+-- W05 finds min(order_id) among PACKED orders; this partial index avoids
+-- scanning millions of non-PACKED entries in the primary-key index.
+DROP INDEX IF EXISTS amazon.idx_orders_shipped_at;
+CREATE INDEX IF NOT EXISTS idx_orders_shipped_covering
+    ON amazon.orders (shipped_at) INCLUDE (order_id, customer_id)
+    WHERE status = 'SHIPPED';
+CREATE INDEX IF NOT EXISTS idx_orders_packed_order_id
+    ON amazon.orders (order_id)
+    WHERE status = 'PACKED';
 
-CREATE TABLE amazon.order_items_p0 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 0);
-CREATE TABLE amazon.order_items_p1 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 1);
-CREATE TABLE amazon.order_items_p2 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 2);
-CREATE TABLE amazon.order_items_p3 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 3);
-CREATE TABLE amazon.order_items_p4 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 4);
-CREATE TABLE amazon.order_items_p5 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 5);
-CREATE TABLE amazon.order_items_p6 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 6);
-CREATE TABLE amazon.order_items_p7 PARTITION OF amazon.order_items_partitioned
-    FOR VALUES WITH (MODULUS 8, REMAINDER 7);
+-- Clean up an earlier demonstration run, if present.
+DROP TABLE IF EXISTS amazon.orders_partitioned_demo;
 
-INSERT INTO amazon.order_items_partitioned
-    (order_id, line_no, product_id, seller_id, quantity, unit_price)
-SELECT order_id, line_no, product_id, seller_id, quantity, unit_price
-FROM amazon.order_items;
+CREATE TABLE amazon.orders_partitioned_demo (
+    order_id BIGINT NOT NULL,
+    customer_id INTEGER NOT NULL,
+    address_id INTEGER,
+    ordered_at TIMESTAMPTZ NOT NULL,
+    payment_method TEXT NOT NULL,
+    total_amount NUMERIC(12,2) NOT NULL,
+    status TEXT NOT NULL,
+    shipped_at TIMESTAMPTZ,
+    delivered_at TIMESTAMPTZ,
+    -- PostgreSQL requires a partition key to be included in every unique key.
+    PRIMARY KEY (order_id, ordered_at)
+) PARTITION BY RANGE (ordered_at);
 
--- Remove all foreign keys that point at the old table before replacing it.
-DO $$
-DECLARE
-    fk RECORD;
-BEGIN
-    FOR fk IN
-        SELECT conrelid::regclass AS referencing_table, conname
-        FROM pg_constraint
-        WHERE contype = 'f'
-          AND confrelid = 'amazon.order_items'::regclass
-    LOOP
-        EXECUTE format('ALTER TABLE %s DROP CONSTRAINT %I',
-                       fk.referencing_table, fk.conname);
-    END LOOP;
-END
-$$;
+CREATE TABLE amazon.orders_partitioned_demo_2025
+    PARTITION OF amazon.orders_partitioned_demo
+    FOR VALUES FROM ('2025-01-01 00:00:00+05:30')
+             TO ('2026-01-01 00:00:00+05:30');
+CREATE TABLE amazon.orders_partitioned_demo_2026
+    PARTITION OF amazon.orders_partitioned_demo
+    FOR VALUES FROM ('2026-01-01 00:00:00+05:30')
+             TO ('2027-01-01 00:00:00+05:30');
+CREATE TABLE amazon.orders_partitioned_demo_default
+    PARTITION OF amazon.orders_partitioned_demo DEFAULT;
 
-DROP TABLE amazon.order_items;
-ALTER TABLE amazon.order_items_partitioned RENAME TO order_items;
+INSERT INTO amazon.orders_partitioned_demo
+    (order_id, customer_id, address_id, ordered_at, payment_method,
+     total_amount, status, shipped_at, delivered_at)
+SELECT order_id, customer_id, address_id, ordered_at, payment_method,
+       total_amount, status, shipped_at, delivered_at
+FROM amazon.orders;
 
--- Restore the CP3 indexes on the new partitioned parent. PostgreSQL creates
--- corresponding indexes on all eight partitions.
-CREATE INDEX idx_order_items_product_order
-    ON amazon.order_items (product_id, order_id) INCLUDE (quantity);
-CREATE INDEX idx_order_items_seller_order
-    ON amazon.order_items (seller_id, order_id);
+ANALYZE amazon.orders_partitioned_demo;
 
--- Restore the returns -> order_items relationship removed above.
-ALTER TABLE amazon.returns
-    ADD CONSTRAINT returns_order_items_fk
-    FOREIGN KEY (order_id, line_no)
-    REFERENCES amazon.order_items (order_id, line_no);
+-- Expected plan: only orders_partitioned_demo_2026 appears below.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT order_id, ordered_at, status
+FROM amazon.orders_partitioned_demo
+WHERE ordered_at >= TIMESTAMPTZ '2026-06-01 00:00:00+05:30'
+  AND ordered_at <  TIMESTAMPTZ '2026-07-01 00:00:00+05:30';
 
-COMMIT;
-
--- Verify partition counts after migration:
--- SELECT tableoid::regclass AS partition, count(*)
--- FROM amazon.order_items GROUP BY tableoid ORDER BY partition;
+-- Keep the benchmark database's schema and storage unchanged after the demo.
+DROP TABLE amazon.orders_partitioned_demo;

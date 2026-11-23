@@ -1,0 +1,51 @@
+=== W03 run 1 ===
+Update on products p  (cost=0.29..9.82 rows=0 width=0) (actual time=0.480..0.480 rows=0.00 loops=1)
+  Buffers: shared hit=43 dirtied=1
+  ->  Nested Loop  (cost=0.29..9.82 rows=1 width=28) (actual time=0.016..0.017 rows=1.00 loops=1)
+        Buffers: shared hit=4
+        ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.004..0.005 rows=1.00 loops=1)
+              Filter: (category_name = 'Watches'::text)
+              Rows Removed by Filter: 39
+              Buffers: shared hit=1
+        ->  Index Scan using idx_products_seller_category on products p  (cost=0.29..8.31 rows=1 width=15) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Index Cond: ((seller_id = 217) AND (category_id = c.category_id))
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=298
+Planning Time: 0.448 ms
+Execution Time: 0.533 ms
+=== W03 run 2 ===
+Update on products p  (cost=0.29..9.82 rows=0 width=0) (actual time=0.451..0.451 rows=0.00 loops=1)
+  Buffers: shared hit=45
+  ->  Nested Loop  (cost=0.29..9.82 rows=1 width=28) (actual time=0.021..0.024 rows=1.00 loops=1)
+        Buffers: shared hit=5
+        ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.004..0.005 rows=1.00 loops=1)
+              Filter: (category_name = 'Watches'::text)
+              Rows Removed by Filter: 39
+              Buffers: shared hit=1
+        ->  Index Scan using idx_products_seller_category on products p  (cost=0.29..8.31 rows=1 width=15) (actual time=0.014..0.015 rows=1.00 loops=1)
+              Index Cond: ((seller_id = 217) AND (category_id = c.category_id))
+              Index Searches: 1
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=298
+Planning Time: 0.415 ms
+Execution Time: 0.502 ms
+=== W03 run 3 ===
+Update on products p  (cost=0.29..9.82 rows=0 width=0) (actual time=0.499..0.499 rows=0.00 loops=1)
+  Buffers: shared hit=47
+  ->  Nested Loop  (cost=0.29..9.82 rows=1 width=28) (actual time=0.021..0.024 rows=1.00 loops=1)
+        Buffers: shared hit=5
+        ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.004..0.005 rows=1.00 loops=1)
+              Filter: (category_name = 'Watches'::text)
+              Rows Removed by Filter: 39
+              Buffers: shared hit=1
+        ->  Index Scan using idx_products_seller_category on products p  (cost=0.29..8.31 rows=1 width=15) (actual time=0.014..0.016 rows=1.00 loops=1)
+              Index Cond: ((seller_id = 217) AND (category_id = c.category_id))
+              Index Searches: 1
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=298
+Planning Time: 0.440 ms
+Execution Time: 0.551 ms

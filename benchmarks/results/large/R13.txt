@@ -1,0 +1,57 @@
+=== R13 run 1 ===
+Gather  (cost=20053.50..117721.08 rows=419535 width=13) (actual time=176.114..252.949 rows=313385.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=5954 read=30334, temp read=9879 written=9952
+  ->  Parallel Hash Right Anti Join  (cost=19053.50..74767.58 rows=174806 width=13) (actual time=175.776..242.196 rows=104461.67 loops=3)
+        Hash Cond: (o.address_id = a.address_id)
+        Buffers: shared hit=5954 read=30334, temp read=9879 written=9952
+        ->  Parallel Seq Scan on orders o  (cost=0.00..37504.00 rows=1000000 width=4) (actual time=0.054..29.158 rows=800000.00 loops=3)
+              Buffers: shared hit=5954 read=21550
+        ->  Parallel Hash  (cost=12534.00..12534.00 rows=375000 width=13) (actual time=65.712..65.712 rows=300000.00 loops=3)
+              Buckets: 262144  Batches: 8  Memory Usage: 7392kB
+              Buffers: shared read=8784, temp written=3220
+              ->  Parallel Seq Scan on addresses a  (cost=0.00..12534.00 rows=375000 width=13) (actual time=0.590..37.549 rows=300000.00 loops=3)
+                    Buffers: shared read=8784
+Planning:
+  Buffers: shared hit=301 read=8
+Planning Time: 2.147 ms
+Execution Time: 258.564 ms
+=== R13 run 2 ===
+Gather  (cost=20053.50..117721.08 rows=419535 width=13) (actual time=159.582..234.978 rows=313385.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=6518 read=29770, temp read=9880 written=9940
+  ->  Parallel Hash Right Anti Join  (cost=19053.50..74767.58 rows=174806 width=13) (actual time=157.358..222.718 rows=104461.67 loops=3)
+        Hash Cond: (o.address_id = a.address_id)
+        Buffers: shared hit=6518 read=29770, temp read=9880 written=9940
+        ->  Parallel Seq Scan on orders o  (cost=0.00..37504.00 rows=1000000 width=4) (actual time=0.084..29.081 rows=800000.00 loops=3)
+              Buffers: shared hit=6236 read=21268
+        ->  Parallel Hash  (cost=12534.00..12534.00 rows=375000 width=13) (actual time=47.360..47.360 rows=300000.00 loops=3)
+              Buckets: 262144  Batches: 8  Memory Usage: 7392kB
+              Buffers: shared hit=282 read=8502, temp written=3208
+              ->  Parallel Seq Scan on addresses a  (cost=0.00..12534.00 rows=375000 width=13) (actual time=0.045..13.518 rows=300000.00 loops=3)
+                    Buffers: shared hit=282 read=8502
+Planning:
+  Buffers: shared hit=307
+Planning Time: 0.520 ms
+Execution Time: 240.730 ms
+=== R13 run 3 ===
+Gather  (cost=20053.50..117721.08 rows=419535 width=13) (actual time=148.176..225.391 rows=313385.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=7082 read=29206, temp read=9874 written=9948
+  ->  Parallel Hash Right Anti Join  (cost=19053.50..74767.58 rows=174806 width=13) (actual time=148.185..213.585 rows=104461.67 loops=3)
+        Hash Cond: (o.address_id = a.address_id)
+        Buffers: shared hit=7082 read=29206, temp read=9874 written=9948
+        ->  Parallel Seq Scan on orders o  (cost=0.00..37504.00 rows=1000000 width=4) (actual time=0.089..29.371 rows=800000.00 loops=3)
+              Buffers: shared hit=6518 read=20986
+        ->  Parallel Hash  (cost=12534.00..12534.00 rows=375000 width=13) (actual time=37.632..37.632 rows=300000.00 loops=3)
+              Buckets: 262144  Batches: 8  Memory Usage: 7392kB
+              Buffers: shared hit=564 read=8220, temp written=3220
+              ->  Parallel Seq Scan on addresses a  (cost=0.00..12534.00 rows=375000 width=13) (actual time=0.047..13.055 rows=300000.00 loops=3)
+                    Buffers: shared hit=564 read=8220
+Planning:
+  Buffers: shared hit=307
+Planning Time: 0.545 ms
+Execution Time: 231.210 ms

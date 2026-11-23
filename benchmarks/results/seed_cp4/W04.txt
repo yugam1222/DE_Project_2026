@@ -1,0 +1,42 @@
+=== W04 run 1 ===
+Insert on cart_items  (cost=0.00..162.50 rows=0 width=0) (actual time=10.809..10.810 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: cart_items_pkey
+  Tuples Inserted: 5000
+  Conflicting Tuples: 0
+  Buffers: shared hit=40015 read=126 dirtied=199 written=51
+  ->  Function Scan on generate_series g  (cost=0.00..162.50 rows=5000 width=20) (actual time=0.111..0.571 rows=5000.00 loops=1)
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.066 ms
+Trigger for constraint cart_items_customer_id_fkey: time=26.311 calls=5000
+Trigger for constraint cart_items_product_id_fkey: time=17.782 calls=5000
+Execution Time: 55.154 ms
+=== W04 run 2 ===
+Insert on cart_items  (cost=0.00..162.50 rows=0 width=0) (actual time=10.828..10.828 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: cart_items_pkey
+  Tuples Inserted: 5000
+  Conflicting Tuples: 0
+  Buffers: shared hit=42567 dirtied=45 written=45
+  ->  Function Scan on generate_series g  (cost=0.00..162.50 rows=5000 width=20) (actual time=0.110..0.595 rows=5000.00 loops=1)
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.065 ms
+Trigger for constraint cart_items_customer_id_fkey: time=10.293 calls=5000
+Trigger for constraint cart_items_product_id_fkey: time=10.524 calls=5000
+Execution Time: 31.906 ms
+=== W04 run 3 ===
+Insert on cart_items  (cost=0.00..162.50 rows=0 width=0) (actual time=10.971..10.971 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: cart_items_pkey
+  Tuples Inserted: 5000
+  Conflicting Tuples: 0
+  Buffers: shared hit=42521 dirtied=47 written=47
+  ->  Function Scan on generate_series g  (cost=0.00..162.50 rows=5000 width=20) (actual time=0.112..0.581 rows=5000.00 loops=1)
+Planning:
+  Buffers: shared hit=50
+Planning Time: 0.067 ms
+Trigger for constraint cart_items_customer_id_fkey: time=10.023 calls=5000
+Trigger for constraint cart_items_product_id_fkey: time=10.343 calls=5000
+Execution Time: 31.596 ms

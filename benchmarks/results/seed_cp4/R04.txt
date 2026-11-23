@@ -1,0 +1,93 @@
+=== R04 run 1 ===
+Sort  (cost=50.34..50.35 rows=5 width=38) (actual time=0.945..0.945 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=19 read=7
+  ->  GroupAggregate  (cost=50.16..50.28 rows=5 width=38) (actual time=0.936..0.937 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=16 read=7
+        ->  Sort  (cost=50.16..50.18 rows=10 width=34) (actual time=0.933..0.933 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=16 read=7
+              ->  Nested Loop  (cost=4.88..49.99 rows=10 width=34) (actual time=0.495..0.926 rows=6.00 loops=1)
+                    Buffers: shared hit=13 read=7
+                    ->  Bitmap Heap Scan on orders o  (cost=4.46..23.61 rows=5 width=30) (actual time=0.321..0.327 rows=4.00 loops=1)
+                          Recheck Cond: (customer_id = 1042)
+                          Heap Blocks: exact=4
+                          Buffers: shared hit=4 read=3
+                          ->  Bitmap Index Scan on idx_orders_customer_status  (cost=0.00..4.46 rows=5 width=0) (actual time=0.315..0.315 rows=4.00 loops=1)
+                                Index Cond: (customer_id = 1042)
+                                Index Searches: 1
+                                Buffers: shared read=3
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=12) (actual time=0.148..0.149 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=9 read=4
+Planning:
+  Buffers: shared hit=304 read=12
+Planning Time: 2.010 ms
+Execution Time: 0.978 ms
+=== R04 run 2 ===
+Sort  (cost=50.34..50.35 rows=5 width=38) (actual time=0.041..0.042 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=26
+  ->  GroupAggregate  (cost=50.16..50.28 rows=5 width=38) (actual time=0.033..0.034 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=23
+        ->  Sort  (cost=50.16..50.18 rows=10 width=34) (actual time=0.030..0.031 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=23
+              ->  Nested Loop  (cost=4.88..49.99 rows=10 width=34) (actual time=0.014..0.025 rows=6.00 loops=1)
+                    Buffers: shared hit=20
+                    ->  Bitmap Heap Scan on orders o  (cost=4.46..23.61 rows=5 width=30) (actual time=0.010..0.014 rows=4.00 loops=1)
+                          Recheck Cond: (customer_id = 1042)
+                          Heap Blocks: exact=4
+                          Buffers: shared hit=7
+                          ->  Bitmap Index Scan on idx_orders_customer_status  (cost=0.00..4.46 rows=5 width=0) (actual time=0.005..0.005 rows=4.00 loops=1)
+                                Index Cond: (customer_id = 1042)
+                                Index Searches: 1
+                                Buffers: shared hit=3
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=12) (actual time=0.002..0.002 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.565 ms
+Execution Time: 0.082 ms
+=== R04 run 3 ===
+Sort  (cost=50.34..50.35 rows=5 width=38) (actual time=0.037..0.038 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=26
+  ->  GroupAggregate  (cost=50.16..50.28 rows=5 width=38) (actual time=0.030..0.031 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=23
+        ->  Sort  (cost=50.16..50.18 rows=10 width=34) (actual time=0.028..0.029 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=23
+              ->  Nested Loop  (cost=4.88..49.99 rows=10 width=34) (actual time=0.013..0.023 rows=6.00 loops=1)
+                    Buffers: shared hit=20
+                    ->  Bitmap Heap Scan on orders o  (cost=4.46..23.61 rows=5 width=30) (actual time=0.009..0.013 rows=4.00 loops=1)
+                          Recheck Cond: (customer_id = 1042)
+                          Heap Blocks: exact=4
+                          Buffers: shared hit=7
+                          ->  Bitmap Index Scan on idx_orders_customer_status  (cost=0.00..4.46 rows=5 width=0) (actual time=0.005..0.005 rows=4.00 loops=1)
+                                Index Cond: (customer_id = 1042)
+                                Index Searches: 1
+                                Buffers: shared hit=3
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=12) (actual time=0.002..0.002 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=310
+Planning Time: 0.554 ms
+Execution Time: 0.067 ms

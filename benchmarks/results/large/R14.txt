@@ -1,0 +1,63 @@
+=== R14 run 1 ===
+Limit  (cost=18369.68..18375.51 rows=50 width=104) (actual time=29.601..30.538 rows=50.00 loops=1)
+  Buffers: shared hit=1768 read=7866
+  ->  Gather Merge  (cost=18369.68..39368.59 rows=180300 width=104) (actual time=29.600..30.535 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=1768 read=7866
+        ->  Sort  (cost=17369.66..17557.47 rows=75125 width=104) (actual time=28.137..28.138 rows=39.33 loops=3)
+              Sort Key: ((price / mrp))
+              Sort Method: top-N heapsort  Memory: 36kB
+              Buffers: shared hit=1768 read=7866
+              Worker 0:  Sort Method: top-N heapsort  Memory: 36kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 36kB
+              ->  Parallel Seq Scan on products  (cost=0.00..14874.06 rows=75125 width=104) (actual time=0.049..26.165 rows=16435.33 loops=3)
+                    Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+                    Rows Removed by Filter: 183565
+                    Buffers: shared hit=1694 read=7866
+Planning:
+  Buffers: shared hit=203
+Planning Time: 0.455 ms
+Execution Time: 30.565 ms
+=== R14 run 2 ===
+Limit  (cost=18369.68..18375.51 rows=50 width=104) (actual time=31.190..32.039 rows=50.00 loops=1)
+  Buffers: shared hit=2050 read=7584
+  ->  Gather Merge  (cost=18369.68..39368.59 rows=180300 width=104) (actual time=31.189..32.036 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=2050 read=7584
+        ->  Sort  (cost=17369.66..17557.47 rows=75125 width=104) (actual time=29.634..29.635 rows=40.00 loops=3)
+              Sort Key: ((price / mrp))
+              Sort Method: top-N heapsort  Memory: 36kB
+              Buffers: shared hit=2050 read=7584
+              Worker 0:  Sort Method: top-N heapsort  Memory: 36kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 35kB
+              ->  Parallel Seq Scan on products  (cost=0.00..14874.06 rows=75125 width=104) (actual time=0.045..27.600 rows=16435.33 loops=3)
+                    Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+                    Rows Removed by Filter: 183565
+                    Buffers: shared hit=1976 read=7584
+Planning:
+  Buffers: shared hit=203
+Planning Time: 0.301 ms
+Execution Time: 32.058 ms
+=== R14 run 3 ===
+Limit  (cost=18369.68..18375.51 rows=50 width=104) (actual time=31.341..32.321 rows=50.00 loops=1)
+  Buffers: shared hit=2332 read=7302 written=196
+  ->  Gather Merge  (cost=18369.68..39368.59 rows=180300 width=104) (actual time=31.340..32.319 rows=50.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=2332 read=7302 written=196
+        ->  Sort  (cost=17369.66..17557.47 rows=75125 width=104) (actual time=29.743..29.744 rows=39.67 loops=3)
+              Sort Key: ((price / mrp))
+              Sort Method: top-N heapsort  Memory: 36kB
+              Buffers: shared hit=2332 read=7302 written=196
+              Worker 0:  Sort Method: top-N heapsort  Memory: 36kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 36kB
+              ->  Parallel Seq Scan on products  (cost=0.00..14874.06 rows=75125 width=104) (actual time=0.084..27.705 rows=16435.33 loops=3)
+                    Filter: ((status = 'ACTIVE'::text) AND (price < (mrp * 0.5)))
+                    Rows Removed by Filter: 183565
+                    Buffers: shared hit=2258 read=7302 written=196
+Planning:
+  Buffers: shared hit=203
+Planning Time: 0.367 ms
+Execution Time: 32.341 ms

@@ -1,0 +1,63 @@
+=== W05 run 1 ===
+Update on orders  (cost=0.75..8.77 rows=0 width=0) (actual time=0.902..0.903 rows=0.00 loops=1)
+  Buffers: shared hit=34 read=9 dirtied=7
+  InitPlan 2
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.197..0.197 rows=1.00 loops=1)
+          Buffers: shared hit=1 read=2
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.196..0.196 rows=1.00 loops=1)
+                  Buffers: shared hit=1 read=2
+                  ->  Index Only Scan using idx_orders_packed_order_id on orders orders_1  (cost=0.28..48.68 rows=1360 width=8) (actual time=0.196..0.196 rows=1.00 loops=1)
+                        Heap Fetches: 0
+                        Index Searches: 1
+                        Buffers: shared hit=1 read=2
+  ->  Index Scan using orders_pkey on orders  (cost=0.43..8.45 rows=1 width=46) (actual time=0.325..0.327 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=6 read=3
+Planning:
+  Buffers: shared hit=212
+Planning Time: 0.430 ms
+Execution Time: 0.959 ms
+=== W05 run 2 ===
+Update on orders  (cost=0.75..8.77 rows=0 width=0) (actual time=0.133..0.134 rows=0.00 loops=1)
+  Buffers: shared hit=43
+  InitPlan 2
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.034..0.034 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.034..0.034 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_orders_packed_order_id on orders orders_1  (cost=0.28..48.68 rows=1360 width=8) (actual time=0.033..0.033 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using orders_pkey on orders  (cost=0.43..8.45 rows=1 width=46) (actual time=0.047..0.048 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=212
+Planning Time: 0.380 ms
+Execution Time: 0.180 ms
+=== W05 run 3 ===
+Update on orders  (cost=0.75..8.77 rows=0 width=0) (actual time=0.140..0.140 rows=0.00 loops=1)
+  Buffers: shared hit=43
+  InitPlan 2
+    ->  Result  (cost=0.31..0.32 rows=1 width=8) (actual time=0.034..0.034 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.28..0.31 rows=1 width=8) (actual time=0.033..0.033 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan using idx_orders_packed_order_id on orders orders_1  (cost=0.28..48.68 rows=1360 width=8) (actual time=0.033..0.033 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Index Scan using orders_pkey on orders  (cost=0.43..8.45 rows=1 width=46) (actual time=0.047..0.049 rows=1.00 loops=1)
+        Index Cond: (order_id = (InitPlan 2).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=212
+Planning Time: 0.397 ms
+Execution Time: 0.188 ms

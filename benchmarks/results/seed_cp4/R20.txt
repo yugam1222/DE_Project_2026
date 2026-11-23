@@ -1,0 +1,66 @@
+=== R20 run 1 ===
+WindowAgg  (cost=699.71..928.12 rows=6092 width=68) (actual time=1.025..1.380 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=101
+  ->  GroupAggregate  (cost=699.67..836.74 rows=6092 width=36) (actual time=1.007..1.366 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=101
+        ->  Sort  (cost=699.67..714.90 rows=6092 width=9) (actual time=0.986..1.098 rows=6189.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: quicksort  Memory: 386kB
+              Buffers: shared hit=101
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..316.71 rows=6092 width=9) (actual time=0.008..0.765 rows=6189.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 404
+                    Index Searches: 1
+                    Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.505 ms
+Execution Time: 1.414 ms
+=== R20 run 2 ===
+WindowAgg  (cost=699.71..928.12 rows=6092 width=68) (actual time=0.984..1.377 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=101
+  ->  GroupAggregate  (cost=699.67..836.74 rows=6092 width=36) (actual time=0.966..1.364 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=101
+        ->  Sort  (cost=699.67..714.90 rows=6092 width=9) (actual time=0.944..1.066 rows=6189.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: quicksort  Memory: 386kB
+              Buffers: shared hit=101
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..316.71 rows=6092 width=9) (actual time=0.006..0.735 rows=6189.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 404
+                    Index Searches: 1
+                    Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.415 ms
+Execution Time: 1.406 ms
+=== R20 run 3 ===
+WindowAgg  (cost=699.71..928.12 rows=6092 width=68) (actual time=0.958..1.312 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=101
+  ->  GroupAggregate  (cost=699.67..836.74 rows=6092 width=36) (actual time=0.941..1.298 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=101
+        ->  Sort  (cost=699.67..714.90 rows=6092 width=9) (actual time=0.922..1.028 rows=6189.00 loops=1)
+              Sort Key: ((orders.ordered_at)::date)
+              Sort Method: quicksort  Memory: 386kB
+              Buffers: shared hit=101
+              ->  Index Scan using idx_orders_ordered_at on orders  (cost=0.42..316.71 rows=6092 width=9) (actual time=0.008..0.712 rows=6189.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Filter: (status <> 'CANCELLED'::text)
+                    Rows Removed by Filter: 404
+                    Index Searches: 1
+                    Buffers: shared hit=98
+Planning:
+  Buffers: shared hit=262
+Planning Time: 0.436 ms
+Execution Time: 1.341 ms

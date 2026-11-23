@@ -1,0 +1,153 @@
+=== R16 run 1 ===
+Limit  (cost=14501.90..15038.17 rows=50 width=55) (actual time=88.290..118.404 rows=50.00 loops=1)
+  Buffers: shared hit=923 read=10397 written=15
+  ->  Nested Loop  (cost=14501.90..105934.82 rows=8525 width=55) (actual time=88.290..118.401 rows=50.00 loops=1)
+        Buffers: shared hit=923 read=10397 written=15
+        ->  Nested Loop  (cost=14501.75..103817.41 rows=85253 width=59) (actual time=87.764..118.314 rows=353.00 loops=1)
+              Buffers: shared hit=863 read=10397 written=15
+              ->  Gather Merge  (cost=14501.32..24430.44 rows=85253 width=55) (actual time=87.261..88.559 rows=353.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=120 read=9728 written=15
+                    ->  Sort  (cost=13501.30..13590.10 rows=35522 width=55) (actual time=84.534..84.547 rows=602.67 loops=3)
+                          Sort Key: r.created_at DESC
+                          Sort Method: quicksort  Memory: 2743kB
+                          Buffers: shared hit=120 read=9728 written=15
+                          Worker 0:  Sort Method: quicksort  Memory: 2722kB
+                          Worker 1:  Sort Method: quicksort  Memory: 2749kB
+                          ->  Parallel Bitmap Heap Scan on product_reviews r  (cost=692.44..10816.47 rows=35522 width=55) (actual time=10.886..81.853 rows=28005.67 loops=3)
+                                Recheck Cond: (body ~~* '%battery%'::text)
+                                Heap Blocks: exact=3231
+                                Buffers: shared hit=104 read=9728 written=15
+                                Worker 0:  Heap Blocks: exact=3191
+                                Worker 1:  Heap Blocks: exact=3220
+                                ->  Bitmap Index Scan on idx_reviews_body_trgm  (cost=0.00..671.13 rows=85253 width=0) (actual time=12.399..12.399 rows=84017.00 loops=1)
+                                      Index Cond: (body ~~* '%battery%'::text)
+                                      Index Searches: 1
+                                      Buffers: shared hit=64 read=86
+              ->  Memoize  (cost=0.43..0.98 rows=1 width=8) (actual time=0.084..0.084 rows=1.00 loops=353)
+                    Cache Key: r.product_id
+                    Cache Mode: logical
+                    Hits: 0  Misses: 353  Evictions: 0  Overflows: 0  Memory Usage: 38kB
+                    Buffers: shared hit=743 read=669
+                    ->  Index Scan using products_pkey on products p  (cost=0.42..0.97 rows=1 width=8) (actual time=0.083..0.083 rows=1.00 loops=353)
+                          Index Cond: (product_id = r.product_id)
+                          Index Searches: 353
+                          Buffers: shared hit=743 read=669
+        ->  Memoize  (cost=0.15..0.17 rows=1 width=4) (actual time=0.000..0.000 rows=0.14 loops=353)
+              Cache Key: p.category_id
+              Cache Mode: logical
+              Hits: 323  Misses: 30  Evictions: 0  Overflows: 0  Memory Usage: 3kB
+              Buffers: shared hit=60
+              ->  Index Scan using categories_pkey on categories c  (cost=0.14..0.16 rows=1 width=4) (actual time=0.001..0.001 rows=0.13 loops=30)
+                    Index Cond: (category_id = p.category_id)
+                    Filter: (parent_category_id = 1)
+                    Rows Removed by Filter: 1
+                    Index Searches: 30
+                    Buffers: shared hit=60
+Planning:
+  Buffers: shared hit=422 read=14
+Planning Time: 2.129 ms
+Execution Time: 118.479 ms
+=== R16 run 2 ===
+Limit  (cost=14501.90..15038.17 rows=50 width=55) (actual time=28.491..30.857 rows=50.00 loops=1)
+  Buffers: shared hit=8679 read=2641
+  ->  Nested Loop  (cost=14501.90..105934.82 rows=8525 width=55) (actual time=28.490..30.854 rows=50.00 loops=1)
+        Buffers: shared hit=8679 read=2641
+        ->  Nested Loop  (cost=14501.75..103817.41 rows=85253 width=59) (actual time=28.466..30.793 rows=353.00 loops=1)
+              Buffers: shared hit=8619 read=2641
+              ->  Gather Merge  (cost=14501.32..24430.44 rows=85253 width=55) (actual time=28.235..29.548 rows=353.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=7207 read=2641
+                    ->  Sort  (cost=13501.30..13590.10 rows=35522 width=55) (actual time=26.301..26.314 rows=585.33 loops=3)
+                          Sort Key: r.created_at DESC
+                          Sort Method: quicksort  Memory: 2809kB
+                          Buffers: shared hit=7207 read=2641
+                          Worker 0:  Sort Method: quicksort  Memory: 2708kB
+                          Worker 1:  Sort Method: quicksort  Memory: 2697kB
+                          ->  Parallel Bitmap Heap Scan on product_reviews r  (cost=692.44..10816.47 rows=35522 width=55) (actual time=5.776..23.667 rows=28005.67 loops=3)
+                                Recheck Cond: (body ~~* '%battery%'::text)
+                                Heap Blocks: exact=3351
+                                Buffers: shared hit=7191 read=2641
+                                Worker 0:  Heap Blocks: exact=3161
+                                Worker 1:  Heap Blocks: exact=3130
+                                ->  Bitmap Index Scan on idx_reviews_body_trgm  (cost=0.00..671.13 rows=85253 width=0) (actual time=6.700..6.700 rows=84017.00 loops=1)
+                                      Index Cond: (body ~~* '%battery%'::text)
+                                      Index Searches: 1
+                                      Buffers: shared hit=69 read=81
+              ->  Memoize  (cost=0.43..0.98 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=353)
+                    Cache Key: r.product_id
+                    Cache Mode: logical
+                    Hits: 0  Misses: 353  Evictions: 0  Overflows: 0  Memory Usage: 38kB
+                    Buffers: shared hit=1412
+                    ->  Index Scan using products_pkey on products p  (cost=0.42..0.97 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=353)
+                          Index Cond: (product_id = r.product_id)
+                          Index Searches: 353
+                          Buffers: shared hit=1412
+        ->  Memoize  (cost=0.15..0.17 rows=1 width=4) (actual time=0.000..0.000 rows=0.14 loops=353)
+              Cache Key: p.category_id
+              Cache Mode: logical
+              Hits: 323  Misses: 30  Evictions: 0  Overflows: 0  Memory Usage: 3kB
+              Buffers: shared hit=60
+              ->  Index Scan using categories_pkey on categories c  (cost=0.14..0.16 rows=1 width=4) (actual time=0.000..0.000 rows=0.13 loops=30)
+                    Index Cond: (category_id = p.category_id)
+                    Filter: (parent_category_id = 1)
+                    Rows Removed by Filter: 1
+                    Index Searches: 30
+                    Buffers: shared hit=60
+Planning:
+  Buffers: shared hit=425 read=11
+Planning Time: 1.131 ms
+Execution Time: 30.918 ms
+=== R16 run 3 ===
+Limit  (cost=14501.90..15038.17 rows=50 width=55) (actual time=26.973..29.339 rows=50.00 loops=1)
+  Buffers: shared hit=11320
+  ->  Nested Loop  (cost=14501.90..105934.82 rows=8525 width=55) (actual time=26.973..29.336 rows=50.00 loops=1)
+        Buffers: shared hit=11320
+        ->  Nested Loop  (cost=14501.75..103817.41 rows=85253 width=59) (actual time=26.957..29.279 rows=353.00 loops=1)
+              Buffers: shared hit=11260
+              ->  Gather Merge  (cost=14501.32..24430.44 rows=85253 width=55) (actual time=26.760..28.161 rows=353.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=9848
+                    ->  Sort  (cost=13501.30..13590.10 rows=35522 width=55) (actual time=24.542..24.553 rows=584.00 loops=3)
+                          Sort Key: r.created_at DESC
+                          Sort Method: quicksort  Memory: 2743kB
+                          Buffers: shared hit=9848
+                          Worker 0:  Sort Method: quicksort  Memory: 2743kB
+                          Worker 1:  Sort Method: quicksort  Memory: 2728kB
+                          ->  Parallel Bitmap Heap Scan on product_reviews r  (cost=692.44..10816.47 rows=35522 width=55) (actual time=5.544..22.230 rows=28005.67 loops=3)
+                                Recheck Cond: (body ~~* '%battery%'::text)
+                                Heap Blocks: exact=3232
+                                Buffers: shared hit=9832
+                                Worker 0:  Heap Blocks: exact=3209
+                                Worker 1:  Heap Blocks: exact=3201
+                                ->  Bitmap Index Scan on idx_reviews_body_trgm  (cost=0.00..671.13 rows=85253 width=0) (actual time=6.861..6.861 rows=84017.00 loops=1)
+                                      Index Cond: (body ~~* '%battery%'::text)
+                                      Index Searches: 1
+                                      Buffers: shared hit=150
+              ->  Memoize  (cost=0.43..0.98 rows=1 width=8) (actual time=0.003..0.003 rows=1.00 loops=353)
+                    Cache Key: r.product_id
+                    Cache Mode: logical
+                    Hits: 0  Misses: 353  Evictions: 0  Overflows: 0  Memory Usage: 38kB
+                    Buffers: shared hit=1412
+                    ->  Index Scan using products_pkey on products p  (cost=0.42..0.97 rows=1 width=8) (actual time=0.002..0.002 rows=1.00 loops=353)
+                          Index Cond: (product_id = r.product_id)
+                          Index Searches: 353
+                          Buffers: shared hit=1412
+        ->  Memoize  (cost=0.15..0.17 rows=1 width=4) (actual time=0.000..0.000 rows=0.14 loops=353)
+              Cache Key: p.category_id
+              Cache Mode: logical
+              Hits: 323  Misses: 30  Evictions: 0  Overflows: 0  Memory Usage: 3kB
+              Buffers: shared hit=60
+              ->  Index Scan using categories_pkey on categories c  (cost=0.14..0.16 rows=1 width=4) (actual time=0.000..0.000 rows=0.13 loops=30)
+                    Index Cond: (category_id = p.category_id)
+                    Filter: (parent_category_id = 1)
+                    Rows Removed by Filter: 1
+                    Index Searches: 30
+                    Buffers: shared hit=60
+Planning:
+  Buffers: shared hit=436
+Planning Time: 1.155 ms
+Execution Time: 29.398 ms

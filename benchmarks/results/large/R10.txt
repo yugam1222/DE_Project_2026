@@ -1,0 +1,138 @@
+=== R10 run 1 ===
+Limit  (cost=81401.13..81401.38 rows=100 width=44) (actual time=507.427..508.312 rows=100.00 loops=1)
+  Buffers: shared hit=4528 read=15387 dirtied=5765 written=1805, temp read=807 written=810
+  ->  Sort  (cost=81401.13..81910.44 rows=203725 width=44) (actual time=507.426..508.307 rows=100.00 loops=1)
+        Sort Key: (sum(((ci.quantity)::numeric * p.price))) DESC
+        Sort Method: top-N heapsort  Memory: 37kB
+        Buffers: shared hit=4528 read=15387 dirtied=5765 written=1805, temp read=807 written=810
+        ->  GroupAggregate  (cost=44794.65..73614.90 rows=203725 width=44) (actual time=428.983..496.011 rows=200337.00 loops=1)
+              Group Key: ci.customer_id
+              Buffers: shared hit=4525 read=15387 dirtied=5765 written=1805, temp read=807 written=810
+              ->  Gather Merge  (cost=44794.65..68521.78 rows=203725 width=13) (actual time=428.971..447.908 rows=283299.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=4525 read=15387 dirtied=5765 written=1805, temp read=807 written=810
+                    ->  Sort  (cost=43794.62..44006.83 rows=84885 width=13) (actual time=427.122..430.636 rows=94433.00 loops=3)
+                          Sort Key: ci.customer_id
+                          Sort Method: external merge  Disk: 2144kB
+                          Buffers: shared hit=4525 read=15387 dirtied=5765 written=1805, temp read=807 written=810
+                          Worker 0:  Sort Method: external merge  Disk: 2176kB
+                          Worker 1:  Sort Method: external merge  Disk: 2136kB
+                          ->  Parallel Hash Join  (cost=23494.23..36845.42 rows=84885 width=13) (actual time=371.348..413.283 rows=94433.00 loops=3)
+                                Hash Cond: (p.product_id = ci.product_id)
+                                Buffers: shared hit=4511 read=15387 dirtied=5765 written=1805
+                                ->  Parallel Seq Scan on products p  (cost=0.00..12060.00 rows=250000 width=9) (actual time=0.067..7.219 rows=200000.00 loops=3)
+                                      Buffers: shared hit=2 read=9558 written=282
+                                ->  Parallel Hash  (cost=22433.16..22433.16 rows=84885 width=12) (actual time=371.206..371.230 rows=94433.00 loops=3)
+                                      Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 19488kB
+                                      Buffers: shared hit=4509 read=5829 dirtied=5765 written=1523
+                                      ->  Parallel Hash Anti Join  (cost=10282.70..22433.16 rows=84885 width=12) (actual time=11.406..358.053 rows=94433.00 loops=3)
+                                            Hash Cond: (ci.customer_id = o.customer_id)
+                                            Buffers: shared hit=4509 read=5829 dirtied=5765 written=1523
+                                            ->  Parallel Seq Scan on cart_items ci  (cost=0.00..10585.86 rows=183470 width=12) (actual time=0.087..322.920 rows=147343.33 loops=3)
+                                                  Filter: (added_at < '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Rows Removed by Filter: 152657
+                                                  Buffers: shared hit=1 read=5828 dirtied=5765 written=1523
+                                            ->  Parallel Hash  (cost=8921.20..8921.20 rows=108920 width=4) (actual time=11.242..11.242 rows=89377.00 loops=3)
+                                                  Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 16672kB
+                                                  Buffers: shared hit=4508 read=1
+                                                  ->  Parallel Index Scan using idx_orders_ordered_at on orders o  (cost=0.43..8921.20 rows=108920 width=4) (actual time=0.011..5.958 rows=89377.00 loops=3)
+                                                        Index Cond: (ordered_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=4508 read=1
+Planning:
+  Buffers: shared hit=430 read=12 dirtied=3
+Planning Time: 1.786 ms
+Execution Time: 508.820 ms
+=== R10 run 2 ===
+Limit  (cost=81401.13..81401.38 rows=100 width=44) (actual time=194.422..195.862 rows=100.00 loops=1)
+  Buffers: shared hit=8538 read=11371 written=192, temp read=807 written=810
+  ->  Sort  (cost=81401.13..81910.44 rows=203725 width=44) (actual time=194.421..195.858 rows=100.00 loops=1)
+        Sort Key: (sum(((ci.quantity)::numeric * p.price))) DESC
+        Sort Method: top-N heapsort  Memory: 37kB
+        Buffers: shared hit=8538 read=11371 written=192, temp read=807 written=810
+        ->  GroupAggregate  (cost=44794.65..73614.90 rows=203725 width=44) (actual time=111.671..181.324 rows=200337.00 loops=1)
+              Group Key: ci.customer_id
+              Buffers: shared hit=8535 read=11371 written=192, temp read=807 written=810
+              ->  Gather Merge  (cost=44794.65..68521.78 rows=203725 width=13) (actual time=111.653..131.636 rows=283299.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=8535 read=11371 written=192, temp read=807 written=810
+                    ->  Sort  (cost=43794.62..44006.83 rows=84885 width=13) (actual time=109.966..113.568 rows=94433.00 loops=3)
+                          Sort Key: ci.customer_id
+                          Sort Method: external merge  Disk: 2152kB
+                          Buffers: shared hit=8535 read=11371 written=192, temp read=807 written=810
+                          Worker 0:  Sort Method: external merge  Disk: 2168kB
+                          Worker 1:  Sort Method: external merge  Disk: 2136kB
+                          ->  Parallel Hash Join  (cost=23494.23..36845.42 rows=84885 width=13) (actual time=51.279..95.363 rows=94433.00 loops=3)
+                                Hash Cond: (p.product_id = ci.product_id)
+                                Buffers: shared hit=8521 read=11371 written=192
+                                ->  Parallel Seq Scan on products p  (cost=0.00..12060.00 rows=250000 width=9) (actual time=0.071..7.176 rows=200000.00 loops=3)
+                                      Buffers: shared hit=284 read=9276
+                                ->  Parallel Hash  (cost=22433.16..22433.16 rows=84885 width=12) (actual time=51.131..51.135 rows=94433.00 loops=3)
+                                      Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 19488kB
+                                      Buffers: shared hit=8237 read=2095 written=192
+                                      ->  Parallel Hash Anti Join  (cost=10282.70..22433.16 rows=84885 width=12) (actual time=11.909..43.109 rows=94433.00 loops=3)
+                                            Hash Cond: (ci.customer_id = o.customer_id)
+                                            Buffers: shared hit=8237 read=2095 written=192
+                                            ->  Parallel Seq Scan on cart_items ci  (cost=0.00..10585.86 rows=183470 width=12) (actual time=0.083..12.941 rows=147343.33 loops=3)
+                                                  Filter: (added_at < '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Rows Removed by Filter: 152657
+                                                  Buffers: shared hit=3735 read=2094 written=192
+                                            ->  Parallel Hash  (cost=8921.20..8921.20 rows=108920 width=4) (actual time=11.749..11.749 rows=89377.00 loops=3)
+                                                  Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 16672kB
+                                                  Buffers: shared hit=4502 read=1
+                                                  ->  Parallel Index Scan using idx_orders_ordered_at on orders o  (cost=0.43..8921.20 rows=108920 width=4) (actual time=0.009..6.061 rows=89377.00 loops=3)
+                                                        Index Cond: (ordered_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=4502 read=1
+Planning:
+  Buffers: shared hit=434 read=8
+Planning Time: 0.978 ms
+Execution Time: 196.336 ms
+=== R10 run 3 ===
+Limit  (cost=81401.13..81401.38 rows=100 width=44) (actual time=184.404..185.445 rows=100.00 loops=1)
+  Buffers: shared hit=9100 read=10806, temp read=807 written=810
+  ->  Sort  (cost=81401.13..81910.44 rows=203725 width=44) (actual time=184.404..185.441 rows=100.00 loops=1)
+        Sort Key: (sum(((ci.quantity)::numeric * p.price))) DESC
+        Sort Method: top-N heapsort  Memory: 37kB
+        Buffers: shared hit=9100 read=10806, temp read=807 written=810
+        ->  GroupAggregate  (cost=44794.65..73614.90 rows=203725 width=44) (actual time=106.498..173.060 rows=200337.00 loops=1)
+              Group Key: ci.customer_id
+              Buffers: shared hit=9097 read=10806, temp read=807 written=810
+              ->  Gather Merge  (cost=44794.65..68521.78 rows=203725 width=13) (actual time=106.482..125.378 rows=283299.00 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=9097 read=10806, temp read=807 written=810
+                    ->  Sort  (cost=43794.62..44006.83 rows=84885 width=13) (actual time=104.790..108.133 rows=94433.00 loops=3)
+                          Sort Key: ci.customer_id
+                          Sort Method: external merge  Disk: 2152kB
+                          Buffers: shared hit=9097 read=10806, temp read=807 written=810
+                          Worker 0:  Sort Method: external merge  Disk: 2160kB
+                          Worker 1:  Sort Method: external merge  Disk: 2144kB
+                          ->  Parallel Hash Join  (cost=23494.23..36845.42 rows=84885 width=13) (actual time=50.462..91.223 rows=94433.00 loops=3)
+                                Hash Cond: (p.product_id = ci.product_id)
+                                Buffers: shared hit=9083 read=10806
+                                ->  Parallel Seq Scan on products p  (cost=0.00..12060.00 rows=250000 width=9) (actual time=0.072..7.073 rows=200000.00 loops=3)
+                                      Buffers: shared hit=566 read=8994
+                                ->  Parallel Hash  (cost=22433.16..22433.16 rows=84885 width=12) (actual time=50.321..50.322 rows=94433.00 loops=3)
+                                      Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 19488kB
+                                      Buffers: shared hit=8517 read=1812
+                                      ->  Parallel Hash Anti Join  (cost=10282.70..22433.16 rows=84885 width=12) (actual time=11.789..42.551 rows=94433.00 loops=3)
+                                            Hash Cond: (ci.customer_id = o.customer_id)
+                                            Buffers: shared hit=8517 read=1812
+                                            ->  Parallel Seq Scan on cart_items ci  (cost=0.00..10585.86 rows=183470 width=12) (actual time=0.094..12.708 rows=147343.33 loops=3)
+                                                  Filter: (added_at < '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Rows Removed by Filter: 152657
+                                                  Buffers: shared hit=4017 read=1812
+                                            ->  Parallel Hash  (cost=8921.20..8921.20 rows=108920 width=4) (actual time=11.611..11.611 rows=89377.00 loops=3)
+                                                  Buckets: 524288 (originally 262144)  Batches: 1 (originally 1)  Memory Usage: 16672kB
+                                                  Buffers: shared hit=4500
+                                                  ->  Parallel Index Scan using idx_orders_ordered_at on orders o  (cost=0.43..8921.20 rows=108920 width=4) (actual time=0.009..6.096 rows=89377.00 loops=3)
+                                                        Index Cond: (ordered_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone)
+                                                        Index Searches: 1
+                                                        Buffers: shared hit=4500
+Planning:
+  Buffers: shared hit=442
+Planning Time: 0.912 ms
+Execution Time: 185.898 ms
